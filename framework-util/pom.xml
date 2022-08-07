@@ -17,16 +17,18 @@
     </properties>
 
     <dependencies>
-        <dependency>
-            <groupId>com.xuegao</groupId>
-            <artifactId>xue-gao-framework</artifactId>
-            <version>${project.version}</version>
-        </dependency>
 
         <dependency>
             <groupId>com.xuegao</groupId>
             <artifactId>framework-web</artifactId>
             <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.xuegao</groupId>
+            <artifactId>framework-core</artifactId>
+            <version>${project.version}</version>
+            <scope>compile</scope>
         </dependency>
 
         <dependency>

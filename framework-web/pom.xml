@@ -19,12 +19,6 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.xuegao</groupId>
-            <artifactId>xue-gao-framework</artifactId>
-            <version>0.0.1</version>
-        </dependency>
-
-        <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>

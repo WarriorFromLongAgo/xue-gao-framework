@@ -1,6 +1,6 @@
 package com.xuegao;
 
-import com.xuegao.xuegaoframework.enums.HttpCode;
+import com.xuegao.enums.HttpCode;
 
 import java.io.Serializable;
 
