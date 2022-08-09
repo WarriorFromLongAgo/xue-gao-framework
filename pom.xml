@@ -13,7 +13,7 @@
 
     <groupId>com.xuegao</groupId>
     <artifactId>xue-gao-framework</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2</version>
 
     <packaging>pom</packaging>
 
@@ -34,6 +34,8 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
+        <framework.version>0.0.2</framework.version>
+
         <poi.version>5.2.2</poi.version>
         <spring-boot.version>2.1.18.RELEASE</spring-boot.version>
         <lombok.version>1.18.24</lombok.version>
