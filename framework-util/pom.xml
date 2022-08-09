@@ -28,7 +28,6 @@
             <groupId>com.xuegao</groupId>
             <artifactId>framework-core</artifactId>
             <version>${project.version}</version>
-            <scope>compile</scope>
         </dependency>
 
         <dependency>
