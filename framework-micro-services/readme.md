@@ -1,0 +1,5 @@
+feign
+
+LoadBalancer
+
+WebMvcConfigurer

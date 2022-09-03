@@ -23,6 +23,7 @@
         <module>framework-filter-debug</module>
         <module>framework-log</module>
         <module>framework-config</module>
+        <module>framework-micro-services</module>
     </modules>
 
     <properties>
