@@ -17,8 +17,12 @@
         <module>framework-kafka</module>
         <module>framework-cache</module>
         <module>framework-jdbc</module>
-        <module>framework-web</module>
         <module>framework-core</module>
+        <module>framework-sharding-jdbc</module>
+        <module>framework-mapper</module>
+        <module>framework-filter-debug</module>
+        <module>framework-log</module>
+        <module>framework-config</module>
     </modules>
 
     <properties>

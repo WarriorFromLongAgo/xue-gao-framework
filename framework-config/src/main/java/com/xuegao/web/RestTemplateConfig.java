@@ -1,4 +1,4 @@
-package com.xuegao.config;
+package com.xuegao.web;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -8,6 +8,9 @@ import org.springframework.web.client.RestTemplate;
 
 @Configuration
 public class RestTemplateConfig {
+    /**
+     * 最好使用feign
+     */
     public static final String REST_TEMPLATE_NAME = "restTemplate";
 
     @Bean

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>framework-util</artifactId>
+    <artifactId>framework-config</artifactId>
 
     <properties>
         <maven.compiler.source>8</maven.compiler.source>
@@ -17,28 +17,10 @@
     </properties>
 
     <dependencies>
-
         <dependency>
-            <groupId>com.xuegao</groupId>
-            <artifactId>framework-core</artifactId>
-            <version>${project.version}</version>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
-        <dependency>
-            <groupId>com.xuegao</groupId>
-            <artifactId>framework-config</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.alibaba.fastjson2</groupId>
-            <artifactId>fastjson2</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-lang3</artifactId>
-        </dependency>
-
     </dependencies>
+
 </project>
