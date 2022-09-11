@@ -15,7 +15,7 @@ public class RestTemplateConfig {
     /**
      * 最好使用feign
      */
-    public static final String REST_TEMPLATE_NAME = "restTemplate";
+    public static final String REST_TEMPLATE_NAME = "xuegao-framework-restTemplate";
 
     @Bean
     public ClientHttpRequestFactory clientHttpRequestFactory() {
