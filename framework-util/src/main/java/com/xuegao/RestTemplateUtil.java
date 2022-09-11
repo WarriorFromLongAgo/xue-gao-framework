@@ -3,13 +3,20 @@ package com.xuegao;
 import com.xuegao.web.RestTemplateConfig;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeansException;
+import org.springframework.boot.context.event.ApplicationStartedEvent;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.ApplicationContextAware;
+import org.springframework.context.ApplicationListener;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.Map;
 
-public class RestTemplateUtil {
+@Component
+public class RestTemplateUtil implements ApplicationListener<ApplicationStartedEvent>, ApplicationContextAware {
     private static final Logger log = LoggerFactory.getLogger(RestTemplateUtil.class);
 
     /**
@@ -17,12 +24,27 @@ public class RestTemplateUtil {
      */
     private static final long DEFAULT_SECONDS = 20;
 
-    private static RestTemplate REST_TEMPLATE = SpringUtil.getBean(RestTemplateConfig.REST_TEMPLATE_NAME, RestTemplate.class);
+    // private static RestTemplate REST_TEMPLATE = SpringUtil.getBean(RestTemplateConfig.REST_TEMPLATE_NAME, RestTemplate.class);
+    private static RestTemplate REST_TEMPLATE;
+
+    private ApplicationContext applicationContext;
 
     private RestTemplateUtil() {
     }
 
-    public static void setRedisTemplate(RestTemplate restTemplate) {
+    @Override
+    public void setApplicationContext(ApplicationContext inputApplicationContext) throws BeansException {
+        applicationContext = inputApplicationContext;
+    }
+
+    @Override
+    public void onApplicationEvent(ApplicationStartedEvent event) {
+        RestTemplate restTemplate = applicationContext.getBean(RestTemplateConfig.REST_TEMPLATE_NAME, RestTemplate.class);
+        setRestTemplate(restTemplate);
+        log.info("[xue-gao-framework][RestTemplateUtil][onApplicationEvent][设置restTemplate完毕]");
+    }
+
+    public static void setRestTemplate(RestTemplate restTemplate) {
         if (REST_TEMPLATE == null) {
             REST_TEMPLATE = restTemplate;
         }
@@ -65,4 +87,5 @@ public class RestTemplateUtil {
                                  Map<String, ?> uriVariables) {
         return getRestTemplate().postForObject(url, request, responseType, uriVariables);
     }
+
 }
