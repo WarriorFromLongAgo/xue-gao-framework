@@ -21,6 +21,10 @@ public class RespUtil<T extends Serializable> implements Serializable {
     private RespUtil() {
     }
 
+    private RespUtil(T data) {
+        success(data);
+    }
+
     private RespUtil(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
