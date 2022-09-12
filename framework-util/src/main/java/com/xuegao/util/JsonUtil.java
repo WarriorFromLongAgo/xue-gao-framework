@@ -1,4 +1,4 @@
-package com.xuegao;
+package com.xuegao.util;
 
 import com.alibaba.fastjson2.JSON;
 import org.apache.commons.lang3.StringUtils;

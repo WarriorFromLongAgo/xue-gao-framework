@@ -1,4 +1,4 @@
-package com.xuegao.enums;
+package com.xuegao.core.enums;
 
 public enum HttpCode {
     /**
