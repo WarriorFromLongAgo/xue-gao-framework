@@ -3,6 +3,7 @@ package com.xuegao.config.concurrent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
+import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -21,15 +22,16 @@ import static com.xuegao.config.concurrent.ThreadPoolConfig.XUEGAO_THREAD_NAME_B
         name = "concurrent.enable",
         havingValue = "true"
 )
+@ConfigurationProperties(prefix = "xuegao.concurrent")
 public class ThreadPoolConfig {
 
-    @Value("${xuegao.concurrent.corePoolSize:8}")
+    @Value("${corePoolSize:8}")
     private Integer corePoolSize;
-    @Value("${xuegao.concurrent.maximumPoolSize:16}")
+    @Value("${maximumPoolSize:16}")
     private Integer maximumPoolSize;
-    @Value("${xuegao.concurrent.keepAliveSecond:60}")
+    @Value("${keepAliveSecond:60}")
     private Integer keepAliveSecond;
-    @Value("${xuegao.concurrent.queueCapacity:1024}")
+    @Value("${queueCapacity:1024}")
 
     private Integer queueCapacity;
     private static final String XUEGAO_THREAD_NAME_PREFIX = "xuegao-SpringTaskExecutor-";
