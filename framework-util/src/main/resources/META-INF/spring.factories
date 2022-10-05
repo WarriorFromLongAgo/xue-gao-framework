@@ -1,2 +1,3 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.xuegao.util.RestTemplateUtil
+com.xuegao.util.RestTemplateUtil\
+com.xuegao.util.SpringUtil
