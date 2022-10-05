@@ -12,7 +12,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SpringUtil implements ApplicationContextAware {
-    private static final Logger logger = LoggerFactory.getLogger(SpringUtil.class);
+    private static final Logger log = LoggerFactory.getLogger(SpringUtil.class);
 
     public static String APPLICATION_NAME = null;
 
@@ -23,7 +23,7 @@ public class SpringUtil implements ApplicationContextAware {
             try {
                 return APPLICATION_CONTEXT.getBean(beanName);
             } catch (Exception e) {
-                logger.warn("获取Bean失败！ beanName: " + beanName, e);
+                log.warn("获取Bean失败！ beanName: " + beanName, e);
                 return null;
             }
         }
@@ -37,7 +37,7 @@ public class SpringUtil implements ApplicationContextAware {
             try {
                 result = APPLICATION_CONTEXT.getBean(beanName, requiredType);
             } catch (Exception e) {
-                logger.warn("获取Bean失败！ beanName: " + beanName, e);
+                log.warn("获取Bean失败！ beanName: " + beanName, e);
             }
         }
 
@@ -50,7 +50,7 @@ public class SpringUtil implements ApplicationContextAware {
             try {
                 result = APPLICATION_CONTEXT.getBean(requiredType);
             } catch (Exception e) {
-                logger.warn("获取Bean失败！", e);
+                log.warn("获取Bean失败！", e);
             }
         }
 
@@ -61,5 +61,6 @@ public class SpringUtil implements ApplicationContextAware {
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
         APPLICATION_NAME = applicationContext.getId();
         SpringUtil.APPLICATION_CONTEXT = applicationContext;
+        log.info("[xue-gao-framework][SpringUtil][setApplicationContext][设置SpringUtil完毕]");
     }
 }
