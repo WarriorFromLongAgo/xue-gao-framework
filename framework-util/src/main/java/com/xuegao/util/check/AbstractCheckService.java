@@ -1,7 +1,9 @@
 package com.xuegao.util.check;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
+
+import java.math.BigDecimal;
 
 public interface AbstractCheckService {
     /**
@@ -98,12 +100,12 @@ public interface AbstractCheckService {
      * @author xuegao
      * @date 2022/8/7 22:13
      */
-    default boolean isRealEmpty(Object object) {
+    static boolean isRealEmpty(Object object) {
         if (object == null) {
             return true;
         }
         if (object instanceof String) {
-            return StringUtils.hasText(object.toString());
+            return StringUtils.isBlank(object.toString());
         }
         return ObjectUtils.isEmpty(object);
     }
@@ -143,5 +145,26 @@ public interface AbstractCheckService {
         return input;
     }
 
+    /**
+     * 检查是否是整数，包含正负数，小数，等
+     * checkIsNumber
+     *
+     * @param str:
+     * @return boolean
+     * @author fjm
+     * @date 2022/10/20 14:51
+     */
+    static boolean checkIsNumber(String str) {
+        if (isRealEmpty(str)) {
+            return false;
+        }
+        str = str.trim();
 
+        try {
+            BigDecimal bigDecimal = new BigDecimal(str);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
 }
