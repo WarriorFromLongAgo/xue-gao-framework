@@ -21,6 +21,23 @@ public interface AbstractCheckService {
     }
 
     /**
+     * checkIsFalse
+     * 判断入参的字段是否为false
+     *
+     * @param bool:
+     * @param errorMsg:
+     * @return com.kyexpress.crm.offer.service.check.AbstractCheckService
+     * @author fjm
+     * @date 2022/4/25 15:13
+     */
+    default AbstractCheckService checkIsFalse(Boolean bool, String errorMsg) {
+        if (Boolean.FALSE.equals(bool)) {
+            throw new RuntimeException(errorMsg);
+        }
+        return this;
+    }
+
+    /**
      * 判断入参的字段是否为空
      * checkIsNull
      *
@@ -32,6 +49,23 @@ public interface AbstractCheckService {
      */
     default AbstractCheckService checkIsNull(Object object, String errorMsg) {
         if (isRealEmpty(object)) {
+            throw new RuntimeException(errorMsg);
+        }
+        return this;
+    }
+
+    /**
+     * checkIsNull
+     * 判断入参的字段是否为空
+     *
+     * @param object:
+     * @param errorMsg:
+     * @return com.kyexpress.crm.offer.service.check.AbstractCheckService
+     * @author fjm
+     * @date 2022/4/25 15:13
+     */
+    default AbstractCheckService checkIsNotNull(Object object, String errorMsg) {
+        if (isNotRealEmpty(object)) {
             throw new RuntimeException(errorMsg);
         }
         return this;
@@ -86,5 +120,28 @@ public interface AbstractCheckService {
     default boolean isNotRealEmpty(Object object) {
         return !isRealEmpty(object);
     }
+
+    /**
+     * 格式化字段最大值与最小值
+     * format
+     *
+     * @param input:
+     * @param min:
+     * @param max:
+     * @return T
+     * @author fjm
+     * @date 2022/9/13 16:46
+     */
+    static <T extends Comparable<T>> T format(T input, T min, T max) {
+        if (input == null) {
+            input = min;
+        } else if (input.compareTo(min) <= 0) {
+            input = min;
+        } else if (input.compareTo(max) >= 0) {
+            input = max;
+        }
+        return input;
+    }
+
 
 }
