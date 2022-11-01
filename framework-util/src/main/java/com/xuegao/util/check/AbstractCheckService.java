@@ -4,6 +4,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ObjectUtils;
 
 import java.math.BigDecimal;
+import java.util.Objects;
 
 public interface AbstractCheckService {
     /**
@@ -28,7 +29,6 @@ public interface AbstractCheckService {
      *
      * @param bool:
      * @param errorMsg:
-     * @return com.kyexpress.crm.offer.service.check.AbstractCheckService
      * @author xuegao
      * @date 2022/4/25 15:13
      */
@@ -62,7 +62,6 @@ public interface AbstractCheckService {
      *
      * @param object:
      * @param errorMsg:
-     * @return com.kyexpress.crm.offer.service.check.AbstractCheckService
      * @author xuegao
      * @date 2022/4/25 15:13
      */
