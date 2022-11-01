@@ -3,6 +3,9 @@ package com.xuegao.util.check;
 import org.springframework.util.ObjectUtils;
 import org.springframework.util.StringUtils;
 
+import java.math.BigDecimal;
+import java.util.Objects;
+
 public interface AbstractCheckService {
     /**
      * checkIsTrue
@@ -16,6 +19,13 @@ public interface AbstractCheckService {
     default AbstractCheckService checkIsTrue(Boolean bool, String errorMsg) {
         if (Boolean.TRUE.equals(bool)) {
             throw new RuntimeException(errorMsg);
+        }
+        return this;
+    }
+
+    default AbstractCheckService checkIsFalse(Boolean bool, String errorMsg) {
+        if (Boolean.FALSE.equals(bool)) {
+            throw new RuntimeException( errorMsg);
         }
         return this;
     }
@@ -35,6 +45,20 @@ public interface AbstractCheckService {
             throw new RuntimeException(errorMsg);
         }
         return this;
+    }
+
+    default AbstractCheckService checkIsNotNull(Object object, String errorMsg) {
+        if (isNotRealEmpty(object)) {
+            throw new RuntimeException(errorMsg);
+        }
+        return this;
+    }
+
+    default AbstractCheckService checkEqual(Object o1, Object o2, String errorMsg) {
+        if (Objects.equals(o1, o2)) {
+            return this;
+        }
+        throw new RuntimeException(errorMsg);
     }
 
     /**
@@ -86,5 +110,45 @@ public interface AbstractCheckService {
     default boolean isNotRealEmpty(Object object) {
         return !isRealEmpty(object);
     }
+
+    static <T extends Comparable<T>> T format(T input, T min, T max) {
+        if (input == null) {
+            input = min;
+        } else if (input.compareTo(min) <= 0) {
+            input = min;
+        } else if (input.compareTo(max) >= 0) {
+            input = max;
+        }
+        return input;
+    }
+
+    default AbstractCheckService checkIsNumber(String errorMsg, String... strArr) {
+        if (ObjectUtils.isEmpty(strArr)) {
+            return this;
+        }
+        for (String str : strArr) {
+            if (!strIsNumber(str)) {
+                throw new RuntimeException( errorMsg);
+            }
+        }
+        return this;
+    }
+
+    default boolean strIsNumber(String str) {
+        if (isRealEmpty(str)) {
+            return false;
+        }
+        str = str.trim();
+
+        try {
+            BigDecimal bigDecimal = new BigDecimal(str);
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+
+
+
 
 }
