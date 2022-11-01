@@ -73,7 +73,7 @@ public class RestTemplateUtil implements ApplicationListener<ApplicationStartedE
      * @param request:
      * @param responseType:
      * @return T
-     * @author fjm
+     * @author xuegao
      * @date 2022/8/5 21:17
      */
     public static <T> T sendPost(String url, Object request, Class<T> responseType) {

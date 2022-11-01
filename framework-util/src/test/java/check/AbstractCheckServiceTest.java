@@ -4,7 +4,7 @@ import com.xuegao.util.check.AbstractCheckService;
 import org.junit.Test;
 
 /**
- * @author fjm
+ * @author xuegao
  * @date 2022年10月20日 14:46
  */
 public class AbstractCheckServiceTest {

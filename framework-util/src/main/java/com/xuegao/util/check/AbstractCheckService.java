@@ -137,7 +137,7 @@ public interface AbstractCheckService {
      * @param min:
      * @param max:
      * @return T
-     * @author fjm
+     * @author xuegao
      * @date 2022/9/13 16:46
      */
     static <T extends Comparable<T>> T format(T input, T min, T max) {

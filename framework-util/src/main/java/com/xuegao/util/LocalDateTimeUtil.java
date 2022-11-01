@@ -226,7 +226,7 @@ public class LocalDateTimeUtil {
      *
      * @param date1 时间1
      * @param date2 时间2
-     * @author fjm
+     * @author xuegao
      */
     public static long differentDays(LocalDateTime date1, LocalDateTime date2) {
         return date2.toLocalDate().toEpochDay() - date1.toLocalDate().toEpochDay();
@@ -237,7 +237,7 @@ public class LocalDateTimeUtil {
      *
      * @param date1 时间1
      * @param date2 时间2
-     * @author fjm
+     * @author xuegao
      */
     public static long differentDays(LocalDate date1, LocalDate date2) {
         return date2.toEpochDay() - date1.toEpochDay();
@@ -408,7 +408,7 @@ public class LocalDateTimeUtil {
      * @param inputLocalDateTime:
      * @param minutes:
      * @return java.time.LocalDateTime
-     * @author fjm
+     * @author xuegao
      * @date 2022/8/11 13:19
      */
     public static LocalDateTime localDateTimeAddMinutesSetSecond00(LocalDateTime inputLocalDateTime, long minutes) {
