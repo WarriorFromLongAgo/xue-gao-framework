@@ -1,10 +1,9 @@
 package com.xuegao.util.check;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ObjectUtils;
-import org.springframework.util.StringUtils;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 
 public interface AbstractCheckService {
     /**
@@ -23,9 +22,19 @@ public interface AbstractCheckService {
         return this;
     }
 
+    /**
+     * checkIsFalse
+     * 判断入参的字段是否为false
+     *
+     * @param bool:
+     * @param errorMsg:
+     * @return com.kyexpress.crm.offer.service.check.AbstractCheckService
+     * @author xuegao
+     * @date 2022/4/25 15:13
+     */
     default AbstractCheckService checkIsFalse(Boolean bool, String errorMsg) {
         if (Boolean.FALSE.equals(bool)) {
-            throw new RuntimeException( errorMsg);
+            throw new RuntimeException(errorMsg);
         }
         return this;
     }
@@ -47,6 +56,16 @@ public interface AbstractCheckService {
         return this;
     }
 
+    /**
+     * checkIsNull
+     * 判断入参的字段是否为空
+     *
+     * @param object:
+     * @param errorMsg:
+     * @return com.kyexpress.crm.offer.service.check.AbstractCheckService
+     * @author xuegao
+     * @date 2022/4/25 15:13
+     */
     default AbstractCheckService checkIsNotNull(Object object, String errorMsg) {
         if (isNotRealEmpty(object)) {
             throw new RuntimeException(errorMsg);
@@ -88,12 +107,12 @@ public interface AbstractCheckService {
      * @author xuegao
      * @date 2022/8/7 22:13
      */
-    default boolean isRealEmpty(Object object) {
+    static boolean isRealEmpty(Object object) {
         if (object == null) {
             return true;
         }
         if (object instanceof String) {
-            return StringUtils.hasText(object.toString());
+            return StringUtils.isBlank(object.toString());
         }
         return ObjectUtils.isEmpty(object);
     }
@@ -111,6 +130,17 @@ public interface AbstractCheckService {
         return !isRealEmpty(object);
     }
 
+    /**
+     * 格式化字段最大值与最小值
+     * format
+     *
+     * @param input:
+     * @param min:
+     * @param max:
+     * @return T
+     * @author fjm
+     * @date 2022/9/13 16:46
+     */
     static <T extends Comparable<T>> T format(T input, T min, T max) {
         if (input == null) {
             input = min;
@@ -147,8 +177,4 @@ public interface AbstractCheckService {
         }
         return true;
     }
-
-
-
-
 }
