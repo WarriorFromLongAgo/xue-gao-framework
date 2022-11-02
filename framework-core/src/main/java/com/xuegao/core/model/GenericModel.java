@@ -7,12 +7,12 @@ public class GenericModel<PK> implements Serializable {
 
     private static final long serialVersionUID = 1L;
     protected PK id;
-    protected String traceId;
     protected String createdBy;
-    protected Date creationDate;
+    protected Date createTime;
     protected String updatedBy;
-    protected Date updationDate;
+    protected Date updateTime;
     protected Integer enabledFlag = 1;
+    protected String traceId;
 
     public GenericModel() {
     }
@@ -25,28 +25,12 @@ public class GenericModel<PK> implements Serializable {
         this.id = id;
     }
 
-    public String getTraceId() {
-        return traceId;
-    }
-
-    public void setTraceId(String traceId) {
-        this.traceId = traceId;
-    }
-
     public String getCreatedBy() {
         return createdBy;
     }
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public Date getCreationDate() {
-        return creationDate;
-    }
-
-    public void setCreationDate(Date creationDate) {
-        this.creationDate = creationDate;
     }
 
     public String getUpdatedBy() {
@@ -57,19 +41,35 @@ public class GenericModel<PK> implements Serializable {
         this.updatedBy = updatedBy;
     }
 
-    public Date getUpdationDate() {
-        return updationDate;
-    }
-
-    public void setUpdationDate(Date updationDate) {
-        this.updationDate = updationDate;
-    }
-
     public Integer getEnabledFlag() {
         return enabledFlag;
     }
 
     public void setEnabledFlag(Integer enabledFlag) {
         this.enabledFlag = enabledFlag;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
+
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
+    }
+
+    public String getTraceId() {
+        return traceId;
+    }
+
+    public void setTraceId(String traceId) {
+        this.traceId = traceId;
     }
 }

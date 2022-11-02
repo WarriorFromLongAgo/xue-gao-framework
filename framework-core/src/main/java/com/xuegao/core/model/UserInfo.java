@@ -5,25 +5,36 @@ import java.io.Serializable;
 public class UserInfo implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final String KEY_PREFIX = "XUEGAO-";
-    public static final String KEY_UID = "uid";
+    public static final String KEY_UID = "userId";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_NICKNAME = "nickname";
     public static final String KEY_PHONE = "phone";
-    public static final String KEY_IP = "ipAddr";
+    public static final String KEY_IP = "ipAdder";
 
-    private String id;
+    private String userId;
     private String userNumber;
     private String username;
     private String nickname;
     private String phone;
-    private String ipAddr;
+    private String ipAdder;
 
-    public String getId() {
-        return id;
+    public UserInfo() {
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getUserId() {
+        return userId;
+    }
+
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getIpAdder() {
+        return ipAdder;
+    }
+
+    public void setIpAdder(String ipAdder) {
+        this.ipAdder = ipAdder;
     }
 
     public String getUserNumber() {
@@ -58,11 +69,4 @@ public class UserInfo implements Serializable {
         this.phone = phone;
     }
 
-    public String getIpAddr() {
-        return ipAddr;
-    }
-
-    public void setIpAddr(String ipAddr) {
-        this.ipAddr = ipAddr;
-    }
 }

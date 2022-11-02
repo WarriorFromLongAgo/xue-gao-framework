@@ -4,6 +4,8 @@ import com.xuegao.util.check.AbstractCheckService;
 import org.junit.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.math.BigDecimal;
+
 /**
  * @author xuegao
  * @date 2022年10月20日 14:46
@@ -31,5 +33,15 @@ public class AbstractCheckServiceTest implements AbstractCheckService {
         // }
     }
 
+    @Test
+    public void toNumber() {
+        String str = "11";
+        System.out.println(str + " 转为数字: " + toNumber(str, Integer::new));
+        System.out.println(str + " 转为数字: " + toNumber(str, Integer::valueOf));
 
+        System.out.println(str + " 转为数字: " + toNumber(str, BigDecimal::new));
+
+        System.out.println(str + " 转为数字: " + toNumber(str, Double::new));
+        System.out.println(str + " 转为数字: " + toNumber(str, Double::valueOf));
+    }
 }

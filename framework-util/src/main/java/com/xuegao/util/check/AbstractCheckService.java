@@ -5,6 +5,7 @@ import org.springframework.util.ObjectUtils;
 
 import java.math.BigDecimal;
 import java.util.Objects;
+import java.util.function.Function;
 
 public interface AbstractCheckService {
     /**
@@ -156,24 +157,42 @@ public interface AbstractCheckService {
             return this;
         }
         for (String str : strArr) {
-            if (!strIsNumber(str)) {
-                throw new RuntimeException( errorMsg);
+            if (!checkIsNumber(str)) {
+                throw new RuntimeException(errorMsg);
             }
         }
         return this;
     }
 
-    default boolean strIsNumber(String str) {
-        if (isRealEmpty(str)) {
+    default <T extends Object> boolean checkIsNumber(T t) {
+        if (isRealEmpty(t)) {
             return false;
         }
-        str = str.trim();
-
         try {
-            BigDecimal bigDecimal = new BigDecimal(str);
+            BigDecimal bigDecimal = new BigDecimal(t.toString());
         } catch (Exception e) {
             return false;
         }
         return true;
+    }
+
+    /**
+     * toNumber
+     *
+     * @param t:
+     * @param function:
+     * @return R
+     * @author xuegao
+     * @date 2022/11/2 16:50
+     */
+    default <T, R> R toNumber(T t, Function<String, R> function) {
+        if (isRealEmpty(t)) {
+            return null;
+        }
+        try {
+            return function.apply(t.toString());
+        } catch (Exception e) {
+            return null;
+        }
     }
 }
