@@ -1,6 +1,7 @@
 package com.xuegao.core.model;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Objects;
 
@@ -46,7 +47,9 @@ public class ContextUtil {
         }
         UserInfo userInfo = context.getUserInfo();
         if (Objects.isNull(userInfo)
-                || Objects.isNull(userInfo.getUserId()) || "".equals(userInfo.getUserId())
+                || StringUtils.isBlank(userInfo.getUserId())
+                || StringUtils.isBlank(userInfo.getUserNumber())
+                || StringUtils.isBlank(userInfo.getUsername())
         ) {
             userInfo = new UserInfo();
             userInfo.setUserId(UserInfo.USERINFO_SYSTEM_NUMBER);
