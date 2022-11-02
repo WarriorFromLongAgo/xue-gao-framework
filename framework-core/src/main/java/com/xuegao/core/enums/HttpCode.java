@@ -40,8 +40,8 @@ public enum HttpCode {
     NULL_ERROR(9999, "系统错误:空指针异常-内存中存在调用空对象的方法"),
 
     ;
-    private Integer httpCode;
-    private String message;
+    private final Integer httpCode;
+    private final String message;
 
     HttpCode(Integer httpCode, String message) {
         this.httpCode = httpCode;

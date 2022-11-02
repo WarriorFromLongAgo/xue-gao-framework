@@ -11,7 +11,6 @@ import org.apache.ibatis.reflection.MetaObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 public class MybatisMetaObjectHandler implements MetaObjectHandler {
@@ -37,12 +36,15 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
         if (StringUtils.isNotBlank(userInfo.getUserId())) {
             this.strictInsertFill(metaObject, "updateBy", userInfo::getUserId, String.class);
         }
-
-        this.strictInsertFill(metaObject, "updateTime", LocalDateTimeUtil::toDate, Date.class);
+        // 这里发现，字段类型必须是一致的，否则不会设置进去
+        this.strictInsertFill(metaObject, "updateTime", LocalDateTimeUtil::now, LocalDateTime.class);
 
         if (StringUtils.isNotBlank(context.getTraceId())) {
             this.strictInsertFill(metaObject, "traceId", context::getTraceId, String.class);
         }
+
+        // this.strictInsertFill(metaObject, "delFlag", 1, LocalDateTime.class);
+
         // 或者
         // 也可以使用(3.3.0 该方法有bug)
         // this.fillStrategy(metaObject, "createTime", LocalDateTime.now());
@@ -62,7 +64,7 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
             this.strictUpdateFill(metaObject, "updateBy", userInfo::getUserId, String.class);
         }
 
-        this.strictUpdateFill(metaObject, "updateTime", LocalDateTimeUtil::toDate, Date.class);
+        this.strictUpdateFill(metaObject, "updateTime", LocalDateTimeUtil::now, LocalDateTime.class);
 
         if (StringUtils.isNotBlank(context.getTraceId())) {
             this.strictUpdateFill(metaObject, "traceId", context::getTraceId, String.class);
