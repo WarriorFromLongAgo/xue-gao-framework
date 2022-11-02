@@ -16,7 +16,7 @@ public class Context implements Serializable {
     /**
      * 全局参数
      */
-    private transient ConcurrentMap<String, Object> globalParamMap = new ConcurrentHashMap<>();
+    private /*transient*/ ConcurrentMap<String, Object> globalParamMap = new ConcurrentHashMap<>();
     /**
      * 一次登录，一个会话id
      */
