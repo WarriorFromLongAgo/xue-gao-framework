@@ -42,6 +42,9 @@ public class Context implements Serializable {
 
     private ClientInfo clientInfo;
 
+    public Context() {
+    }
+
     public ClientInfo getClientInfo() {
         if (clientInfo == null) {
             clientInfo = new ClientInfo();

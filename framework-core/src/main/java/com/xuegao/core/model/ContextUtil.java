@@ -45,13 +45,15 @@ public class ContextUtil {
             context = new Context();
         }
         UserInfo userInfo = context.getUserInfo();
-        if (Objects.isNull(userInfo)) {
+        if (Objects.isNull(userInfo)
+                || Objects.isNull(userInfo.getUserId()) || "".equals(userInfo.getUserId())
+        ) {
             userInfo = new UserInfo();
             userInfo.setUserId(UserInfo.USERINFO_SYSTEM_NUMBER);
             userInfo.setUsername(UserInfo.USERINFO_SYSTEM);
             userInfo.setUserNumber(UserInfo.USERINFO_SYSTEM_NUMBER);
             context.setUserInfo(userInfo);
-            ContextUtil.set(context);
         }
+        ContextUtil.set(context);
     }
 }
