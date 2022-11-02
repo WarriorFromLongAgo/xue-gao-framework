@@ -1,0 +1,2 @@
+org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
+com.xuegao.mapper.mpconfig.MybatisMetaObjectHandler

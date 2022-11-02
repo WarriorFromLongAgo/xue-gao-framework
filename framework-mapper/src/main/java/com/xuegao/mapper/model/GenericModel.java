@@ -1,18 +1,37 @@
 package com.xuegao.mapper.model;
 
+import com.baomidou.mybatisplus.annotation.FieldFill;
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableLogic;
+
 import java.io.Serializable;
-import java.util.Date;
 
 public class GenericModel<PK> implements Serializable {
-
     private static final long serialVersionUID = 1L;
+
     protected PK id;
-    protected String createdBy;
-    protected Date createTime;
-    protected String updatedBy;
-    protected Date updateTime;
-    protected Integer enabledFlag = 1;
-    protected String traceId;
+
+    /**
+     * 0已删除，1默认值，未删除
+     */
+    @TableLogic
+    @TableField(select = false, fill = FieldFill.INSERT)
+    private Integer delFlag;
+
+    @TableField(fill = FieldFill.INSERT)
+    private String createBy;
+
+    @TableField(fill = FieldFill.INSERT)
+    private String createTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String updateBy;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String updateTime;
+
+    @TableField(fill = FieldFill.INSERT_UPDATE)
+    private String traceId;
 
     public GenericModel() {
     }
@@ -25,43 +44,43 @@ public class GenericModel<PK> implements Serializable {
         this.id = id;
     }
 
-    public String getCreatedBy() {
-        return createdBy;
+    public Integer getDelFlag() {
+        return delFlag;
     }
 
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setDelFlag(Integer delFlag) {
+        this.delFlag = delFlag;
     }
 
-    public String getUpdatedBy() {
-        return updatedBy;
+    public String getCreateBy() {
+        return createBy;
     }
 
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
+    public void setCreateBy(String createBy) {
+        this.createBy = createBy;
     }
 
-    public Integer getEnabledFlag() {
-        return enabledFlag;
-    }
-
-    public void setEnabledFlag(Integer enabledFlag) {
-        this.enabledFlag = enabledFlag;
-    }
-
-    public Date getCreateTime() {
+    public String getCreateTime() {
         return createTime;
     }
 
-    public void setCreateTime(Date createTime) {
+    public void setCreateTime(String createTime) {
         this.createTime = createTime;
     }
 
-    public Date getUpdateTime() {
+    public String getUpdateBy() {
+        return updateBy;
+    }
+
+    public void setUpdateBy(String updateBy) {
+        this.updateBy = updateBy;
+    }
+
+    public String getUpdateTime() {
         return updateTime;
     }
 
-    public void setUpdateTime(Date updateTime) {
+    public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
     }
 

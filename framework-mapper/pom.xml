@@ -16,4 +16,20 @@
         <maven.compiler.target>8</maven.compiler.target>
     </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-boot-starter</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.xuegao</groupId>
+            <artifactId>framework-core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.xuegao</groupId>
+            <artifactId>framework-util</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 </project>

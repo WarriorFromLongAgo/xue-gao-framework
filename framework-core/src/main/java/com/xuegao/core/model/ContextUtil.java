@@ -2,6 +2,8 @@ package com.xuegao.core.model;
 
 import com.alibaba.ttl.TransmittableThreadLocal;
 
+import java.util.Objects;
+
 public class ContextUtil {
     private static final ThreadLocal<Context> CURRENT_LOCAL_CONTEXT = new TransmittableThreadLocal<>();
 
@@ -37,4 +39,19 @@ public class ContextUtil {
         return result;
     }
 
+    public static void setDefaultContext() {
+        Context context = ContextUtil.get();
+        if (Objects.isNull(context)) {
+            context = new Context();
+        }
+        UserInfo userInfo = context.getUserInfo();
+        if (Objects.isNull(userInfo)) {
+            userInfo = new UserInfo();
+            userInfo.setUserId(UserInfo.USERINFO_SYSTEM_NUMBER);
+            userInfo.setUsername(UserInfo.USERINFO_SYSTEM);
+            userInfo.setUserNumber(UserInfo.USERINFO_SYSTEM_NUMBER);
+            context.setUserInfo(userInfo);
+            ContextUtil.set(context);
+        }
+    }
 }

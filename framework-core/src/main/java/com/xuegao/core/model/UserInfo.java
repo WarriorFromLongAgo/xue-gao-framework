@@ -11,6 +11,13 @@ public class UserInfo implements Serializable {
     public static final String KEY_PHONE = "phone";
     public static final String KEY_IP = "ipAdder";
 
+    public static final String USERINFO_SYSTEM = "system";
+    /***
+     * 用户ID
+     * 数据默认1开始，那么0就是系统了
+     */
+    public static final String USERINFO_SYSTEM_NUMBER = "0";
+
     private String userId;
     private String userNumber;
     private String username;
