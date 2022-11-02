@@ -1,4 +1,4 @@
-package com.xuegao.core.model;
+package com.xuegao.mapper.model;
 
 import java.io.Serializable;
 import java.util.Date;
