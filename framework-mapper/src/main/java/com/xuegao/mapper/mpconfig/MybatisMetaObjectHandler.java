@@ -50,6 +50,17 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
         // this.fillStrategy(metaObject, "createTime", LocalDateTime.now());
     }
 
+    /**
+     * 修改的时候 strictUpdateFill 由于有值不会修改，
+     * setFieldValByName，换成这个，直接填充，不管原来有没有值
+     * <p>
+     * updateFill
+     *
+     * @param metaObject:
+     * @return void
+     * @author xuegao
+     * @date 2022/11/3 12:10
+     */
     @Override
     public void updateFill(MetaObject metaObject) {
         log.info("[xue-gao-framework][MybatisMetaObjectHandler][updateFill][metaObject={}]", JsonUtil.toJsonString(metaObject));
