@@ -4,10 +4,12 @@ import com.baomidou.mybatisplus.annotation.FieldFill;
 import com.baomidou.mybatisplus.annotation.TableField;
 import com.baomidou.mybatisplus.annotation.TableLogic;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+@SuperBuilder(toBuilder = true)
 public class GenericModel<PK> implements Serializable {
     private static final long serialVersionUID = 1L;
 
@@ -17,7 +19,7 @@ public class GenericModel<PK> implements Serializable {
      * 0已删除，1默认值，未删除
      */
     @TableLogic
-    @TableField(fill = FieldFill.INSERT)
+    // @TableField(fill = FieldFill.INSERT_UPDATE)
     private Integer delFlag = 1;
 
     @TableField(fill = FieldFill.INSERT)

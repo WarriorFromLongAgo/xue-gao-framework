@@ -61,13 +61,13 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
         // 或者
         // 起始版本 3.3.3(推荐)
         if (StringUtils.isNotBlank(userInfo.getUserId())) {
-            this.strictUpdateFill(metaObject, "updateBy", userInfo::getUserId, String.class);
+            this.setFieldValByName("updateBy", userInfo.getUserId(), metaObject);
         }
 
-        this.strictUpdateFill(metaObject, "updateTime", LocalDateTimeUtil::now, LocalDateTime.class);
+        this.setFieldValByName("updateTime", LocalDateTimeUtil.now(), metaObject);
 
         if (StringUtils.isNotBlank(context.getTraceId())) {
-            this.strictUpdateFill(metaObject, "traceId", context::getTraceId, String.class);
+            this.setFieldValByName("traceId", context.getTraceId(), metaObject);
         }
         // 或者
         // 也可以使用(3.3.0 该方法有bug)
