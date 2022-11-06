@@ -33,7 +33,7 @@ public class Context implements Serializable {
     /**
      * 用户信息
      */
-    private UserInfo userInfo;
+    private FmkUserInfo fmkUserInfo;
     private String userId;
     /**
      * 日志id
@@ -77,17 +77,17 @@ public class Context implements Serializable {
         this.ipAddress = ipAddress;
     }
 
-    public UserInfo getUserInfo() {
-        if (userInfo == null) {
-            userInfo = new UserInfo();
+    public FmkUserInfo getUserInfo() {
+        if (fmkUserInfo == null) {
+            fmkUserInfo = new FmkUserInfo();
         }
-        return userInfo;
+        return fmkUserInfo;
     }
 
-    public void setUserInfo(UserInfo userInfo) {
-        this.userInfo = userInfo;
-        if (this.userInfo != null) {
-            this.userId = this.userInfo.getUserId();
+    public void setUserInfo(FmkUserInfo fmkUserInfo) {
+        this.fmkUserInfo = fmkUserInfo;
+        if (this.fmkUserInfo != null) {
+            this.userId = this.fmkUserInfo.getUserId();
         }
     }
 

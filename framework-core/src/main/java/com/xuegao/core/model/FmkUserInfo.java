@@ -2,7 +2,7 @@ package com.xuegao.core.model;
 
 import java.io.Serializable;
 
-public class UserInfo implements Serializable {
+public class FmkUserInfo implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final String KEY_PREFIX = "XUEGAO-";
     public static final String KEY_UID = "userId";
@@ -25,7 +25,7 @@ public class UserInfo implements Serializable {
     private String phone;
     private String ipAdder;
 
-    public UserInfo() {
+    public FmkUserInfo() {
     }
 
     public String getUserId() {
