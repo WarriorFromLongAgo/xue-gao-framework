@@ -13,12 +13,13 @@ public class GlobalExceptionHandler {
 
     @ExceptionHandler(Throwable.class)
     public Object handle(Throwable ex) {
-        log.info("[xue-gao-framework][GlobalExceptionHandler][handle][ex={}]", ex.getMessage(), ex);
+        log.info("[xue-gao-framework][GlobalExceptionHandler][handle][Throwable={}]", ex.getMessage(), ex);
         return Result.error(BaseResult.SYSTEM_ERROR);
     }
 
     @ExceptionHandler(ServiceException.class)
     public Object handle(ServiceException ex) {
+        log.info("[xue-gao-framework][GlobalExceptionHandler][handle][ServiceException={}]", ex.getMessage(), ex);
         return Result.error(ex.getErrorCode(), ex.getMessage());
     }
 
