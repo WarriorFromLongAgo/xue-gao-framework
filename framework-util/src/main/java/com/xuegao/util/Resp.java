@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @version 1.0
  * @date 2022/6/4 15:03
  */
-public class RespUtil<T extends Serializable> implements Serializable {
+public class Resp<T extends Serializable> implements Serializable {
     private static final long serialVersionUID = -1L;
 
     private int code;
@@ -18,21 +18,21 @@ public class RespUtil<T extends Serializable> implements Serializable {
 
     private T data;
 
-    public RespUtil() {
+    public Resp() {
     }
 
-    public RespUtil(Integer code, String message, T data) {
+    public Resp(Integer code, String message, T data) {
         this.code = code;
         this.message = message;
         this.data = data;
     }
 
-    public static <T extends Serializable> RespUtil<T> fail(T data) {
-        return new RespUtil<>(HttpCode.SERVER_ERROR.getHttpCode(), HttpCode.SERVER_ERROR.getMessage(), data);
+    public static <T extends Serializable> Resp<T> fail(T data) {
+        return new Resp<>(HttpCode.SERVER_ERROR.getHttpCode(), HttpCode.SERVER_ERROR.getMessage(), data);
     }
 
-    public static <T extends Serializable> RespUtil<T> success(T data) {
-        return new RespUtil<>(HttpCode.SUCCESS_200.getHttpCode(), HttpCode.SUCCESS_200.getMessage(), data);
+    public static <T extends Serializable> Resp<T> success(T data) {
+        return new Resp<>(HttpCode.SUCCESS_200.getHttpCode(), HttpCode.SUCCESS_200.getMessage(), data);
     }
 
     public Integer getCode() {

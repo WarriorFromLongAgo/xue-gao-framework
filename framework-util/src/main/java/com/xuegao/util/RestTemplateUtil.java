@@ -1,6 +1,6 @@
 package com.xuegao.util;
 
-import com.xuegao.config.web.RestTemplateConfig;
+import com.xuegao.core.common.FmkConstant;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
@@ -24,7 +24,7 @@ public class RestTemplateUtil implements ApplicationListener<ApplicationStartedE
      */
     private static final long DEFAULT_SECONDS = 20;
 
-    // private static RestTemplate REST_TEMPLATE = SpringUtil.getBean(RestTemplateConfig.REST_TEMPLATE_NAME, RestTemplate.class);
+    // private static RestTemplate REST_TEMPLATE = SpringUtil.getBean(FmkConstant.REST_TEMPLATE_NAME, RestTemplate.class);
     private static RestTemplate REST_TEMPLATE;
 
     private ApplicationContext applicationContext;
@@ -39,7 +39,7 @@ public class RestTemplateUtil implements ApplicationListener<ApplicationStartedE
 
     @Override
     public void onApplicationEvent(ApplicationStartedEvent event) {
-        RestTemplate restTemplate = applicationContext.getBean(RestTemplateConfig.REST_TEMPLATE_NAME, RestTemplate.class);
+        RestTemplate restTemplate = applicationContext.getBean(FmkConstant.REST_TEMPLATE_NAME, RestTemplate.class);
         setRestTemplate(restTemplate);
         log.info("[xue-gao-framework][RestTemplateUtil][onApplicationEvent][设置restTemplate完毕]");
     }
