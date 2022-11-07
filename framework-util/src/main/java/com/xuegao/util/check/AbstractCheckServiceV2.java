@@ -9,24 +9,22 @@ import java.util.function.Function;
 
 /**
  * 业务类
- * {@link AbstractCheckServiceV2}
  *
  * @author xuegao
  * @version 1.0
  * @date 2022-3-10
  */
-@Deprecated
-public interface AbstractCheckService {
+public interface AbstractCheckServiceV2 {
     /**
      * checkIsTrue
+     * 判断入参的字段是否为true
      *
      * @param bool:
      * @param errorMsg:
-     * @return com.xuegao.xuegaoframework.util.check.AbstractCheckService
      * @author xuegao
-     * @date 2022/8/7 22:12
+     * @date 2022/4/25 15:13
      */
-    default AbstractCheckService checkIsTrue(Boolean bool, String errorMsg) {
+    default AbstractCheckServiceV2 checkIsTrue(String errorMsg, Boolean bool) {
         if (Boolean.TRUE.equals(bool)) {
             throw new RuntimeException(errorMsg);
         }
@@ -42,25 +40,8 @@ public interface AbstractCheckService {
      * @author xuegao
      * @date 2022/4/25 15:13
      */
-    default AbstractCheckService checkIsFalse(Boolean bool, String errorMsg) {
+    default AbstractCheckServiceV2 checkIsFalse(String errorMsg, Boolean bool) {
         if (Boolean.FALSE.equals(bool)) {
-            throw new RuntimeException(errorMsg);
-        }
-        return this;
-    }
-
-    /**
-     * 判断入参的字段是否为空
-     * checkIsNull
-     *
-     * @param object:
-     * @param errorMsg:
-     * @return com.xuegao.xuegaoframework.util.check.AbstractCheckService
-     * @author xuegao
-     * @date 2022/8/7 22:13
-     */
-    default AbstractCheckService checkIsNull(Object object, String errorMsg) {
-        if (isRealEmpty(object)) {
             throw new RuntimeException(errorMsg);
         }
         return this;
@@ -75,14 +56,64 @@ public interface AbstractCheckService {
      * @author xuegao
      * @date 2022/4/25 15:13
      */
-    default AbstractCheckService checkIsNotNull(Object object, String errorMsg) {
+    default AbstractCheckServiceV2 checkIsNull(String errorMsg, Object object) {
+        if (isRealEmpty(object)) {
+            throw new RuntimeException(errorMsg);
+        }
+        return this;
+    }
+
+    /**
+     * 检查入参是否都为空，只要有一个不为空，那么不报错
+     * checkIsAllNull
+     *
+     * @param errorMsg:
+     * @param object:
+     * @author xuegao
+     * @date 2022/11/7 12:02
+     */
+    default AbstractCheckServiceV2 checkIsAllNull(String errorMsg, Object... object) {
+        boolean resultFlag = true;
+        if (Objects.nonNull(object)) {
+            for (Object o : object) {
+                if (isNotRealEmpty(o)) {
+                    resultFlag = false;
+                }
+            }
+        }
+        if (resultFlag) {
+            throw new RuntimeException(errorMsg);
+        }
+        return this;
+    }
+
+    /**
+     * checkIsNull
+     * 判断入参的字段是否为空
+     *
+     * @param object:
+     * @param errorMsg:
+     * @author xuegao
+     * @date 2022/4/25 15:13
+     */
+    default AbstractCheckServiceV2 checkIsNotNull(String errorMsg, Object object) {
         if (isNotRealEmpty(object)) {
             throw new RuntimeException(errorMsg);
         }
         return this;
     }
 
-    default AbstractCheckService checkEqual(Object o1, Object o2, String errorMsg) {
+    /**
+     * checkLength
+     * 判断是否相等，不相等直接报错
+     *
+     * @param o1:
+     * @param o2:
+     * @param errorMsg:
+     * @author xuegao
+     * @date 2022/4/25 15:14
+     */
+    default AbstractCheckServiceV2 checkEqual(String errorMsg, Object o1, Object o2) {
         if (Objects.equals(o1, o2)) {
             return this;
         }
@@ -90,17 +121,16 @@ public interface AbstractCheckService {
     }
 
     /**
-     * 判断入参的字段是否超过限制
      * checkLength
+     * 判断入参的字段是否超过限制
      *
      * @param size:
      * @param length:
      * @param errorMsg:
-     * @return com.xuegao.xuegaoframework.util.check.AbstractCheckService
      * @author xuegao
-     * @date 2022/8/7 22:13
+     * @date 2022/4/25 15:14
      */
-    default AbstractCheckService checkLength(int size, int length, String errorMsg) {
+    default AbstractCheckServiceV2 checkLength(String errorMsg, int size, int length) {
         if (size > length) {
             throw new RuntimeException(errorMsg);
         }
@@ -108,15 +138,15 @@ public interface AbstractCheckService {
     }
 
     /**
-     * 判断入参的字段是否为空
      * isRealEmpty
+     * 判断入参的字段是否为空
      *
      * @param object:
      * @return boolean
      * @author xuegao
-     * @date 2022/8/7 22:13
+     * @date 2022/4/25 15:15
      */
-    static boolean isRealEmpty(Object object) {
+    default boolean isRealEmpty(Object object) {
         if (object == null) {
             return true;
         }
@@ -127,13 +157,13 @@ public interface AbstractCheckService {
     }
 
     /**
-     * 判断入参的字段是否不为空
      * isNotRealEmpty
+     * 判断入参的字段是否不为空
      *
      * @param object:
      * @return boolean
      * @author xuegao
-     * @date 2022/8/7 22:13
+     * @date 2022/4/25 15:15
      */
     default boolean isNotRealEmpty(Object object) {
         return !isRealEmpty(object);
@@ -161,7 +191,16 @@ public interface AbstractCheckService {
         return input;
     }
 
-    default AbstractCheckService checkIsNumber(String errorMsg, String... strArr) {
+    /**
+     * 检查是否是数字
+     * checkIsNumber
+     *
+     * @param errorMsg:
+     * @param strArr:
+     * @author xuegao
+     * @date 2022/10/20 14:59
+     */
+    default AbstractCheckServiceV2 checkIsNumber(String errorMsg, String... strArr) {
         if (ObjectUtils.isEmpty(strArr)) {
             return this;
         }
@@ -173,10 +212,22 @@ public interface AbstractCheckService {
         return this;
     }
 
-    default <T extends Object> boolean checkIsNumber(T t) {
+    /**
+     * 检查是否是整数，包含正负数，小数，等
+     * <p>
+     * 为null，或者不是number，返回false
+     * checkIsNumber
+     *
+     * @param t:
+     * @return boolean
+     * @author xuegao
+     * @date 2022/10/20 14:51
+     */
+    default <T> boolean checkIsNumber(T t) {
         if (isRealEmpty(t)) {
             return false;
         }
+        // String str = t.toString();
         try {
             BigDecimal bigDecimal = new BigDecimal(t.toString());
         } catch (Exception e) {
@@ -195,9 +246,9 @@ public interface AbstractCheckService {
      * @date 2022/11/2 16:50
      */
     default <T, R> R toNumber(T t, Function<String, R> function) {
-        if (isRealEmpty(t)) {
-            return null;
-        }
+        // if (isRealEmpty(t)) {
+        //     return null;
+        // }
         try {
             return function.apply(t.toString());
         } catch (Exception e) {
