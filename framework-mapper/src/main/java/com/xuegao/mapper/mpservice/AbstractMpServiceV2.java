@@ -410,8 +410,8 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
         Context context = ContextUtil.get();
         FmkUserInfo fmkUserInfo = context.getUserInfo();
 
-        updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATE_BY, fmkUserInfo.getUserId());
-        updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATE_TIME, LocalDateTimeUtil.now());
+        updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_BY, fmkUserInfo.getUserId());
+        updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_TIME, LocalDateTimeUtil.now());
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_TRACE_ID, context.getTraceId());
     }
 
