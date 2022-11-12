@@ -10,29 +10,60 @@ import java.time.LocalDateTime;
 public class GenericModel<PK> implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    /**
+     * <p>
+     * 数据库字段：id
+     */
     protected PK id;
 
     /**
      * 0已删除，1默认值，未删除
+     * <p>
+     * 数据库字段：del_flag
      */
     // @TableLogic
     // @TableField(fill = FieldFill.INSERT_UPDATE)
     private Integer delFlag = 1;
 
+    /**
+     * 创建人
+     * <p>
+     * 数据库字段：create_by
+     */
     @TableField(fill = FieldFill.INSERT)
     private String createBy;
 
+    /**
+     * 创建时间
+     * <p>
+     * 数据库字段：create_time
+     */
     @TableField(fill = FieldFill.INSERT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime createTime;
 
+    /**
+     * 更新人
+     * <p>
+     * 数据库字段：update_by
+     */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String updateBy;
 
+    /**
+     * 更新时间
+     * <p>
+     * 数据库字段：update_time
+     */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
     private LocalDateTime updateTime;
 
+    /**
+     * 链路id
+     * <p>
+     * 数据库字段：trace_id
+     */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     private String traceId;
 
