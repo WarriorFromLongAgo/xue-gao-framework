@@ -9,7 +9,7 @@ import java.io.Serializable;
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper = true)
-public class Result<T extends Serializable> extends BaseResult implements Serializable {
+public class Result<T> extends BaseResult implements Serializable {
 
     //业务数据返回放置
     private T data;
@@ -35,31 +35,31 @@ public class Result<T extends Serializable> extends BaseResult implements Serial
         return CODE_SYSTEM_ERROR.equals(getCode());
     }
 
-    public static <T extends Serializable> Result<T> ok() {
+    public static <T> Result<T> ok() {
         return new Result<>(CODE_SUCCESS, "", null);
     }
 
-    public static <T extends Serializable> Result<T> ok(String message) {
+    public static <T> Result<T> ok(String message) {
         return new Result<>(CODE_SUCCESS, message, null);
     }
 
-    public static <T extends Serializable> Result<T> success(T data) {
+    public static <T> Result<T> success(T data) {
         return new Result<>(CODE_SUCCESS, MESSAGE_SUCCESS, data);
     }
 
-    public static <T extends Serializable> Result<T> success(T data, String message) {
+    public static <T> Result<T> success(T data, String message) {
         return new Result<>(CODE_SUCCESS, message, data);
     }
 
-    public static <T extends Serializable> Result<T> error(String message) {
+    public static <T> Result<T> error(String message) {
         return Result.error(CODE_SYSTEM_ERROR, null, message, null);
     }
 
-    public static <T extends Serializable> Result<T> error(String errorCode, String message) {
+    public static <T> Result<T> error(String errorCode, String message) {
         return Result.error(CODE_SYSTEM_ERROR, errorCode, message, null);
     }
 
-    public static <T extends Serializable> Result<T> error(Integer code, String errorCode, String message, T data) {
+    public static <T> Result<T> error(Integer code, String errorCode, String message, T data) {
         return new Result<>(code, errorCode, message, data);
     }
 
