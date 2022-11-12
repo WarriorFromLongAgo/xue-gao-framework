@@ -8,17 +8,17 @@ public class GenericModelField {
     public static String FILED_ID = "id";
 
     public static String FILED_SQL_COLUMN_DEL_FLAG = "del_flag";
-    public static String FILED_SQL_COLUMN_CREATE_BY = "create_by";
-    public static String FILED_SQL_COLUMN_CREATE_TIME = "create_time";
-    public static String FILED_SQL_COLUMN_UPDATE_BY = "update_by";
-    public static String FILED_SQL_COLUMN_UPDATE_TIME = "update_time";
+    public static String FILED_SQL_COLUMN_CREATE_BY = "created_by";
+    public static String FILED_SQL_COLUMN_CREATE_TIME = "created_time";
+    public static String FILED_SQL_COLUMN_UPDATE_BY = "updated_by";
+    public static String FILED_SQL_COLUMN_UPDATE_TIME = "updated_time";
     public static String FILED_SQL_COLUMN_TRACE_ID = "trace_id";
 
     public static String FILED_COLUMN_DEL_FLAG = "delFlag";
-    public static String FILED_COLUMN_CREATE_BY = "createBy";
-    public static String FILED_COLUMN_CREATE_TIME = "createTime";
-    public static String FILED_COLUMN_UPDATE_BY = "updateBy";
-    public static String FILED_COLUMN_UPDATE_TIME = "updateTime";
+    public static String FILED_COLUMN_CREATE_BY = "createdBy";
+    public static String FILED_COLUMN_CREATE_TIME = "createdTime";
+    public static String FILED_COLUMN_UPDATE_BY = "updatedBy";
+    public static String FILED_COLUMN_UPDATE_TIME = "updatedTime";
     public static String FILED_COLUMN_TRACE_ID = "traceId";
 
     private static Set<String> SQL_SET = new HashSet<>(10);

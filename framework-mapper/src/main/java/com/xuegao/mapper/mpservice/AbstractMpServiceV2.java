@@ -39,11 +39,6 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
         extends ServiceImpl<M, T> {
     private static final Logger log = LoggerFactory.getLogger(AbstractMpServiceV2.class);
 
-    protected BaseMapper<T> setBaseMapper;
-
-    protected AbstractMpServiceV2(BaseMapper<T> baseMapper) {
-        this.setBaseMapper = baseMapper;
-    }
 
     // region 新增
 
@@ -59,7 +54,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
      * @date 2022/11/3 23:41
      */
     public T mpInsert(T entity) {
-        setBaseMapper.insert(entity);
+        getBaseMapper().insert(entity);
         return entity;
     }
 

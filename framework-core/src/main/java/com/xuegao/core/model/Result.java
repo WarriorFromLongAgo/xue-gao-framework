@@ -1,6 +1,5 @@
 package com.xuegao.core.model;
 
-import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -8,7 +7,6 @@ import java.io.Serializable;
 
 @Getter
 @Setter
-@EqualsAndHashCode(callSuper = true)
 public class Result<T> extends BaseResult implements Serializable {
 
     //业务数据返回放置
