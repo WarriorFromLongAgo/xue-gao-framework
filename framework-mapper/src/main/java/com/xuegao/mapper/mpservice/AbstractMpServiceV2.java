@@ -29,6 +29,7 @@ import org.slf4j.LoggerFactory;
 
 import java.io.Serializable;
 import java.lang.reflect.Field;
+import java.time.LocalDateTime;
 import java.util.*;
 
 /**
@@ -54,6 +55,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
      * @date 2022/11/3 23:41
      */
     public T mpInsert(T entity) {
+        setDefaultByInsert(entity);
         getBaseMapper().insert(entity);
         return entity;
     }
@@ -68,6 +70,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
      * @date 2022/11/3 23:48
      */
     public Collection<T> mpInsertBatch(Collection<T> entityList) {
+        setDefaultByInsert(entityList);
         saveBatch(entityList, DEFAULT_BATCH_SIZE);
         return entityList;
     }
@@ -215,6 +218,31 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
             return Lists.newArrayList();
         }
         return this.mpListByColumn(function, idList, DelFlagEnum.DEL_FLAG_1);
+    }
+
+    /**
+     * 根据对象的属性，进行查询，会将对象的非空字段作为查询条件
+     * mpListLimit
+     *
+     * @param t:
+     * @return java.util.List<T>
+     * @author xuegao
+     * @date 2022/11/12 23:20
+     */
+    public List<T> mpListLimit(T t, int limit) {
+        if (ObjectUtils.isEmpty(t)) {
+            return Lists.newArrayList();
+        }
+        LambdaQueryWrapper<T> queryWrapper = Wrappers.lambdaQuery(t);
+        queryWrapper.eq(GenericModel::getDelFlag, DelFlagEnum.DEL_FLAG_1);
+        if (limit > 0) {
+            queryWrapper.last("limit " + limit);
+        }
+        List<T> list = super.list(queryWrapper);
+        if (ObjectUtils.isEmpty(list)) {
+            return Lists.newArrayList();
+        }
+        return list;
     }
 
     // endregion
@@ -400,8 +428,8 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
         Context context = ContextUtil.get();
         FmkUserInfo fmkUserInfo = context.getUserInfo();
 
-        updateWrapper.set(GenericModel::getUpdateBy, fmkUserInfo.getUserId());
-        updateWrapper.set(GenericModel::getUpdateTime, LocalDateTimeUtil.now());
+        updateWrapper.set(GenericModel::getUpdatedBy, fmkUserInfo.getUserId());
+        updateWrapper.set(GenericModel::getUpdatedTime, LocalDateTimeUtil.now());
         updateWrapper.set(GenericModel::getTraceId, context.getTraceId());
     }
 
@@ -413,6 +441,34 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_BY, fmkUserInfo.getUserId());
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_TIME, LocalDateTimeUtil.now());
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_TRACE_ID, context.getTraceId());
+    }
+
+    public void setDefaultByInsert(T t) {
+        ContextUtil.setDefaultContext();
+        Context context = ContextUtil.get();
+        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        LocalDateTime now = LocalDateTimeUtil.now();
+
+        t.setCreatedBy(fmkUserInfo.getUserId());
+        t.setCreatedTime(now);
+        t.setUpdatedBy(fmkUserInfo.getUserId());
+        t.setUpdatedTime(now);
+        t.setTraceId(context.getTraceId());
+    }
+
+    public void setDefaultByInsert(Collection<T> tCollect) {
+        ContextUtil.setDefaultContext();
+        Context context = ContextUtil.get();
+        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        LocalDateTime now = LocalDateTimeUtil.now();
+
+        for (T t : tCollect) {
+            t.setCreatedBy(fmkUserInfo.getUserId());
+            t.setCreatedTime(now);
+            t.setUpdatedBy(fmkUserInfo.getUserId());
+            t.setUpdatedTime(now);
+            t.setTraceId(context.getTraceId());
+        }
     }
 
     public void test(T t) {

@@ -1,5 +1,8 @@
 package com.xuegao.config.concurrent;
 
+import com.xuegao.core.common.FmkConstant;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
@@ -12,11 +15,9 @@ import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
-import static com.xuegao.config.concurrent.ThreadPoolConfig.XUEGAO_THREAD_NAME_BEAN;
-
 @Configuration
 @EnableAsync
-@ConditionalOnMissingBean(name = {XUEGAO_THREAD_NAME_BEAN})
+@ConditionalOnMissingBean(name = {FmkConstant.XUEGAO_THREAD_NAME_BEAN})
 @ConditionalOnProperty(
         prefix = "xuegao",
         name = "concurrent.enable",
@@ -24,6 +25,7 @@ import static com.xuegao.config.concurrent.ThreadPoolConfig.XUEGAO_THREAD_NAME_B
 )
 @ConfigurationProperties(prefix = "xuegao.concurrent")
 public class ThreadPoolConfig {
+    private static final Logger log = LoggerFactory.getLogger(ThreadPoolConfig.class);
 
     @Value("${corePoolSize:8}")
     private Integer corePoolSize;
@@ -34,24 +36,23 @@ public class ThreadPoolConfig {
     @Value("${queueCapacity:1024}")
 
     private Integer queueCapacity;
-    private static final String XUEGAO_THREAD_NAME_PREFIX = "xuegao-SpringTaskExecutor-";
 
-    public static final String XUEGAO_THREAD_NAME_BEAN = "xuegaoSpringTaskExecutor";
 
     public ThreadPoolConfig() {
     }
 
-    @Bean({XUEGAO_THREAD_NAME_BEAN})
+    @Bean({FmkConstant.XUEGAO_THREAD_NAME_BEAN})
     public Executor asyncTaskExecutor() {
         ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
         taskExecutor.setCorePoolSize(this.corePoolSize);
         taskExecutor.setMaxPoolSize(this.maximumPoolSize);
         taskExecutor.setQueueCapacity(this.queueCapacity);
         taskExecutor.setKeepAliveSeconds(this.keepAliveSecond);
-        taskExecutor.setThreadNamePrefix(XUEGAO_THREAD_NAME_PREFIX);
+        taskExecutor.setThreadNamePrefix(FmkConstant.XUEGAO_THREAD_NAME_PREFIX);
         taskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
         taskExecutor.setWaitForTasksToCompleteOnShutdown(true);
         taskExecutor.initialize();
+        log.info("[xue-gao-framework][ThreadPoolConfig][asyncTaskExecutor][线程池初始化完成]");
         return taskExecutor;
     }
 

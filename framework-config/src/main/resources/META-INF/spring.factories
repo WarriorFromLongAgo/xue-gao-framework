@@ -1,3 +1,6 @@
 org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
 com.xuegao.config.web.RestTemplateConfig,\
-com.xuegao.config.concurrent.ThreadPoolConfig
+com.xuegao.config.concurrent.ThreadPoolConfig,\
+  com.xuegao.config.web.GlobalExceptionHandler,\
+  com.xuegao.config.web.CommonJacksonConfig,\
+  com.xuegao.config.web.CorsConfig

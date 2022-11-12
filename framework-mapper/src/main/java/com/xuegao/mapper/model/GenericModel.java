@@ -31,7 +31,7 @@ public class GenericModel<PK> implements Serializable {
      * 数据库字段：create_by
      */
     @TableField(fill = FieldFill.INSERT)
-    private String createBy;
+    private String createdBy;
 
     /**
      * 创建时间
@@ -40,7 +40,7 @@ public class GenericModel<PK> implements Serializable {
      */
     @TableField(fill = FieldFill.INSERT)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime createTime;
+    private LocalDateTime createdTime;
 
     /**
      * 更新人
@@ -48,7 +48,7 @@ public class GenericModel<PK> implements Serializable {
      * 数据库字段：update_by
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
-    private String updateBy;
+    private String updatedBy;
 
     /**
      * 更新时间
@@ -57,7 +57,7 @@ public class GenericModel<PK> implements Serializable {
      */
     @TableField(fill = FieldFill.INSERT_UPDATE)
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "GMT+8")
-    private LocalDateTime updateTime;
+    private LocalDateTime updatedTime;
 
     /**
      * 链路id
@@ -86,20 +86,36 @@ public class GenericModel<PK> implements Serializable {
         this.delFlag = delFlag;
     }
 
-    public String getCreateBy() {
-        return createBy;
+    public String getCreatedBy() {
+        return createdBy;
     }
 
-    public void setCreateBy(String createBy) {
-        this.createBy = createBy;
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
     }
 
-    public String getUpdateBy() {
-        return updateBy;
+    public LocalDateTime getCreatedTime() {
+        return createdTime;
     }
 
-    public void setUpdateBy(String updateBy) {
-        this.updateBy = updateBy;
+    public void setCreatedTime(LocalDateTime createdTime) {
+        this.createdTime = createdTime;
+    }
+
+    public String getUpdatedBy() {
+        return updatedBy;
+    }
+
+    public void setUpdatedBy(String updatedBy) {
+        this.updatedBy = updatedBy;
+    }
+
+    public LocalDateTime getUpdatedTime() {
+        return updatedTime;
+    }
+
+    public void setUpdatedTime(LocalDateTime updatedTime) {
+        this.updatedTime = updatedTime;
     }
 
     public String getTraceId() {
@@ -109,21 +125,4 @@ public class GenericModel<PK> implements Serializable {
     public void setTraceId(String traceId) {
         this.traceId = traceId;
     }
-
-    public LocalDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public void setCreateTime(LocalDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public LocalDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public void setUpdateTime(LocalDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
 }
