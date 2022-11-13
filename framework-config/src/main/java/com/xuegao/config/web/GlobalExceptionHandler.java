@@ -1,5 +1,6 @@
 package com.xuegao.config.web;
 
+import com.xuegao.core.exception.ServiceException;
 import com.xuegao.core.model.BaseResult;
 import com.xuegao.core.model.Result;
 import org.slf4j.Logger;

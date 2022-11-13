@@ -1,4 +1,4 @@
-package com.xuegao.config.web;
+package com.xuegao.core.exception;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

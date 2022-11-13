@@ -1,5 +1,6 @@
 package com.xuegao.util.check;
 
+import com.xuegao.core.exception.ServiceException;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.ObjectUtils;
 
@@ -26,7 +27,7 @@ public interface AbstractCheckServiceV2 {
      */
     default AbstractCheckServiceV2 checkIsTrue(String errorMsg, Boolean bool) {
         if (Boolean.TRUE.equals(bool)) {
-            throw new RuntimeException(errorMsg);
+            throw new ServiceException(errorMsg);
         }
         return this;
     }
@@ -42,7 +43,7 @@ public interface AbstractCheckServiceV2 {
      */
     default AbstractCheckServiceV2 checkIsFalse(String errorMsg, Boolean bool) {
         if (Boolean.FALSE.equals(bool)) {
-            throw new RuntimeException(errorMsg);
+            throw new ServiceException(errorMsg);
         }
         return this;
     }
@@ -58,7 +59,7 @@ public interface AbstractCheckServiceV2 {
      */
     default AbstractCheckServiceV2 checkIsNull(String errorMsg, Object object) {
         if (isRealEmpty(object)) {
-            throw new RuntimeException(errorMsg);
+            throw new ServiceException(errorMsg);
         }
         return this;
     }
@@ -82,7 +83,7 @@ public interface AbstractCheckServiceV2 {
             }
         }
         if (resultFlag) {
-            throw new RuntimeException(errorMsg);
+            throw new ServiceException(errorMsg);
         }
         return this;
     }
@@ -98,7 +99,7 @@ public interface AbstractCheckServiceV2 {
      */
     default AbstractCheckServiceV2 checkIsNotNull(String errorMsg, Object object) {
         if (isNotRealEmpty(object)) {
-            throw new RuntimeException(errorMsg);
+            throw new ServiceException(errorMsg);
         }
         return this;
     }
@@ -117,7 +118,7 @@ public interface AbstractCheckServiceV2 {
         if (Objects.equals(o1, o2)) {
             return this;
         }
-        throw new RuntimeException(errorMsg);
+        throw new ServiceException(errorMsg);
     }
 
     /**
@@ -132,7 +133,7 @@ public interface AbstractCheckServiceV2 {
      */
     default AbstractCheckServiceV2 checkLength(String errorMsg, int size, int length) {
         if (size > length) {
-            throw new RuntimeException(errorMsg);
+            throw new ServiceException(errorMsg);
         }
         return this;
     }
@@ -206,7 +207,7 @@ public interface AbstractCheckServiceV2 {
         }
         for (String str : strArr) {
             if (!checkIsNumber(str)) {
-                throw new RuntimeException(errorMsg);
+                throw new ServiceException(errorMsg);
             }
         }
         return this;
