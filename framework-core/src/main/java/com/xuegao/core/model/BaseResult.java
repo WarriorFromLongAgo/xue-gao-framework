@@ -12,10 +12,10 @@ public class BaseResult {
      */
     private Integer code;
 
-    /**
-     * 业务code
-     */
-    private String errorCode;
+    // /**
+    //  * 业务code
+    //  */
+    // private Integer errorCode;
 
     /**
      * 业务信息
@@ -35,11 +35,11 @@ public class BaseResult {
         this.message = message;
     }
 
-    public BaseResult(Integer code, String errorCode, String message) {
-        this.code = code;
-        this.errorCode = errorCode;
-        this.message = message;
-    }
+    // public BaseResult(Integer code, Integer errorCode, String message) {
+    //     this.code = code;
+    //     // this.errorCode = errorCode;
+    //     this.message = message;
+    // }
 
     /**
      * 通用业务请求状态码

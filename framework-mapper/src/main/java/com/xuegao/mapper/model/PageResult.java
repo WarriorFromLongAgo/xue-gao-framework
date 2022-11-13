@@ -14,7 +14,7 @@ public class PageResult<T> extends BaseResult {
 
     private Long total;
 
-    private List<T> data;
+    private List<T> rowList;
 
     public PageResult() {
     }
@@ -24,7 +24,7 @@ public class PageResult<T> extends BaseResult {
         pageResult.setCode(CODE_SUCCESS);
         pageResult.setMessage(QUERY_SUCCESS);
         pageResult.setTotal(result.getTotal());
-        pageResult.setData(result.getRecords());
+        pageResult.setRowList(result.getRecords());
         return pageResult;
     }
 }

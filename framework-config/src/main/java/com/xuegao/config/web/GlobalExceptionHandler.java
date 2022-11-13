@@ -21,7 +21,11 @@ public class GlobalExceptionHandler {
     @ExceptionHandler(ServiceException.class)
     public Object handle(ServiceException ex) {
         log.info("[xue-gao-framework][GlobalExceptionHandler][handle][ServiceException={}]", ex.getMessage(), ex);
-        return Result.error(ex.getErrorCode(), ex.getMessage());
+        // 注意，这里不是 message，而是自己的errorMsg
+        // Result<Object> error = Result.error(ex.getErrorMessage());
+        // log.info("[xue-gao-framework][GlobalExceptionHandler][handle][error={}]", error);
+        // return error;
+        return Result.error(ex.getErrorMessage());
     }
 
 }

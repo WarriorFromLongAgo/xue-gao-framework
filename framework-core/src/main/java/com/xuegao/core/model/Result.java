@@ -20,10 +20,10 @@ public class Result<T> extends BaseResult implements Serializable {
         this.data = data;
     }
 
-    public Result(Integer code, String errorCode, String message, T data) {
-        super(code, errorCode, message);
-        this.data = data;
-    }
+    // public Result(Integer code, Integer errorCode, String message, T data) {
+    //     super(code, errorCode, message);
+    //     this.data = data;
+    // }
 
     public boolean success() {
         return CODE_SUCCESS.equals(getCode());
@@ -49,17 +49,27 @@ public class Result<T> extends BaseResult implements Serializable {
         return new Result<>(CODE_SUCCESS, message, data);
     }
 
+    // public static <T> Result<T> error(String message) {
+    //     return Result.error(CODE_SYSTEM_ERROR, null, message, null);
+    // }
+    //
+    // public static <T> Result<T> error(Integer errorCode, String message) {
+    //     return Result.error(CODE_SYSTEM_ERROR, errorCode, message, null);
+    // }
+    //
+    // public static <T> Result<T> error(Integer code, Integer errorCode, String message, T data) {
+    //     return new Result<>(code, errorCode, message, data);
+    // }
+
     public static <T> Result<T> error(String message) {
-        return Result.error(CODE_SYSTEM_ERROR, null, message, null);
+        return Result.error(CODE_SYSTEM_ERROR, message, null);
     }
 
-    public static <T> Result<T> error(String errorCode, String message) {
-        return Result.error(CODE_SYSTEM_ERROR, errorCode, message, null);
+    public static <T> Result<T> error(Integer code, String message) {
+        return Result.error(code, message, null);
     }
 
-    public static <T> Result<T> error(Integer code, String errorCode, String message, T data) {
-        return new Result<>(code, errorCode, message, data);
+    public static <T> Result<T> error(Integer code, String message, T data) {
+        return new Result<>(code, message, data);
     }
-
-
 }
