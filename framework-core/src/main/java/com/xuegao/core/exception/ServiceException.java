@@ -13,8 +13,6 @@ public class ServiceException extends RuntimeException {
 
     private static final long serialVersionUID = 430933593095358673L;
 
-    private String errorMessage;
-
     private Integer code;
 
     /**
@@ -30,9 +28,8 @@ public class ServiceException extends RuntimeException {
      * @param errorMessage 异常信息。
      */
     public ServiceException(String errorMessage) {
-        super((String) null);
+        super(errorMessage);
         this.code = BaseResult.CODE_SYSTEM_ERROR;
-        this.errorMessage = errorMessage;
     }
 
     //省略部分代码

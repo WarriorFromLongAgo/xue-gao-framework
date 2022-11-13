@@ -25,7 +25,7 @@ public class GlobalExceptionHandler {
         // Result<Object> error = Result.error(ex.getErrorMessage());
         // log.info("[xue-gao-framework][GlobalExceptionHandler][handle][error={}]", error);
         // return error;
-        return Result.error(ex.getErrorMessage());
+        return Result.error(ex.getMessage());
     }
 
 }
