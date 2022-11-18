@@ -24,6 +24,7 @@
         <module>framework-log</module>
         <module>framework-config</module>
         <module>framework-micro-services</module>
+        <module>framework-id-center</module>
     </modules>
 
     <properties>

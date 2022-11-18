@@ -24,11 +24,11 @@
             <version>${project.version}</version>
         </dependency>
 
-        <!--        <dependency>-->
-        <!--            <groupId>com.xuegao</groupId>-->
-        <!--            <artifactId>framework-config</artifactId>-->
-        <!--            <version>${project.version}</version>-->
-        <!--        </dependency>-->
+        <dependency>
+            <groupId>com.xuegao</groupId>
+            <artifactId>framework-mapper</artifactId>
+            <version>${project.version}</version>
+        </dependency>
 
         <dependency>
             <groupId>com.alibaba.fastjson2</groupId>
@@ -53,6 +53,12 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.sankuai.inf.leaf</groupId>
+            <artifactId>leaf-core</artifactId>
+            <version>1.0.1</version>
         </dependency>
     </dependencies>
 </project>
