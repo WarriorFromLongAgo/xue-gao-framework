@@ -40,7 +40,7 @@ public class ContextUtil {
         return result;
     }
 
-    public static void setDefaultContext() {
+    public static Context setDefaultContext() {
         Context context = ContextUtil.get();
         if (Objects.isNull(context)) {
             context = new Context();
@@ -58,5 +58,6 @@ public class ContextUtil {
             context.setUserInfo(fmkUserInfo);
         }
         ContextUtil.set(context);
+        return context;
     }
 }

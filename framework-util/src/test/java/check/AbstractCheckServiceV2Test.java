@@ -1,17 +1,13 @@
 package check;
 
-import com.xuegao.util.check.AbstractCheckService;
 import com.xuegao.util.check.AbstractCheckServiceV2;
 import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
-
-import java.math.BigDecimal;
 
 /**
  * @author xuegao
  * @date 2022年10月20日 14:46
  */
-@SpringBootTest
+// @SpringBootTest
 public class AbstractCheckServiceV2Test implements AbstractCheckServiceV2 {
 
     @Test

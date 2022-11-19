@@ -2,7 +2,6 @@ package check;
 
 import com.xuegao.util.check.AbstractCheckService;
 import org.junit.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 
@@ -10,7 +9,7 @@ import java.math.BigDecimal;
  * @author xuegao
  * @date 2022年10月20日 14:46
  */
-@SpringBootTest
+// @SpringBootTest
 public class AbstractCheckServiceTest implements AbstractCheckService {
 
 

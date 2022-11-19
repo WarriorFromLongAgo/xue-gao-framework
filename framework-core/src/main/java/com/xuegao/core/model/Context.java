@@ -28,12 +28,16 @@ public class Context implements Serializable {
     private String grayFlag;
     /**
      * IP地址
+     * 当前服务器的IP地址
      */
     private String ipAddress;
     /**
      * 用户信息
      */
     private FmkUserInfo fmkUserInfo;
+    /**
+     * 请求者的用户id
+     */
     private String userId;
     /**
      * 日志id

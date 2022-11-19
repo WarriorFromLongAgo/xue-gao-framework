@@ -7,6 +7,7 @@ public class ClientInfo implements Serializable {
 
     /**
      * ip
+     * 请求者的IP地址
      */
     private String ipAdder;
     /**

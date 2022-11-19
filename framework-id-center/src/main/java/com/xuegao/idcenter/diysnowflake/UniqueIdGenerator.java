@@ -108,7 +108,7 @@ public class UniqueIdGenerator {
      *
      * @return 返回@{@link Long}类型的Id
      */
-    public static Long generateId() {
+    public static Long nextId() {
         long time = CLOCK.nowMillis();
         if (lastTime > time) {
             throw new RuntimeException(String.format("Clock is moving backwards, last time is {} milliseconds, current time is {} milliseconds", lastTime, time));
@@ -128,8 +128,8 @@ public class UniqueIdGenerator {
         return ((time - EPOCH) << TIMESTAMP_LEFT_SHIFT_BITS) | (workerId << WORKER_ID_LEFT_SHIFT_BITS) | sequence;
     }
 
-    public static String generateStringId() {
-        return generateId().toString();
+    public static String nextStrId() {
+        return nextId().toString();
     }
 
     private static long waitUntilNextTime(final long lastTime) {

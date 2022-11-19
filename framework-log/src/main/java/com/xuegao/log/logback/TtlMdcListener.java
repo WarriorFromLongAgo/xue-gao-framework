@@ -4,7 +4,6 @@ import ch.qos.logback.classic.Level;
 import ch.qos.logback.classic.Logger;
 import ch.qos.logback.classic.LoggerContext;
 import ch.qos.logback.classic.spi.LoggerContextListener;
-import ch.qos.logback.core.Context;
 import ch.qos.logback.core.spi.ContextAwareBase;
 import ch.qos.logback.core.spi.LifeCycle;
 import org.slf4j.TtlMDCAdapter;
@@ -25,8 +24,8 @@ public class TtlMdcListener extends ContextAwareBase implements LoggerContextLis
             return;
         }
         addInfo("[xue-gao-framework][load TtlMdcListener][start]");
-        Context context = getContext();
-        context.putProperty("pid", String.valueOf(getPid()));
+        // Context context = getContext();
+        // context.putProperty("pid", String.valueOf(getPid()));
         TtlMDCAdapter.getInstance();
         started = true;
     }
