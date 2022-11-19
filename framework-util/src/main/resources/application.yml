@@ -1,7 +1,0 @@
-leaf:
-  segment:
-    url: jdbc:mysql://127.0.0.1:3306/leaf?serverTimezone=GMT%2B8&useUnicode=true&characterEncoding=utf-8&zeroDateTimeBehavior=convertToNull&nullCatalogMeansCurrent=true
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    password: root
-    username: 123456
-  name: xuegao-leaf-id #默认为leaf-id

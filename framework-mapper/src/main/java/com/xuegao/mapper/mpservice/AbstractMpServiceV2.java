@@ -21,7 +21,7 @@ import com.xuegao.core.model.FmkUserInfo;
 import com.xuegao.mapper.enums.DelFlagEnum;
 import com.xuegao.mapper.model.GenericModel;
 import com.xuegao.mapper.model.GenericModelField;
-import com.xuegao.util.LocalDateTimeUtil;
+import com.xuegao.util.time.LocalDateTimeUtil;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;

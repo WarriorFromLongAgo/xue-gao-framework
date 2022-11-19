@@ -1,4 +1,4 @@
-package com.xuegao.util;
+package com.xuegao.util.time;
 
 import java.sql.Date;
 import java.sql.Timestamp;
