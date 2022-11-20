@@ -16,7 +16,7 @@ xuegao，开始写自己的框架
         sharding-jdbc，分库分表
         util，工具类
 
-        引用说明：log模块，部分为自己研究琢磨，但是涉及链路追踪的相关代码很多来自于开源项目，Tlog
+        引用说明：log模块，部分为自己研究琢磨，，涉及链路追踪的相关代码都来自于开源项目，Tlog（tlog-webroot，tlog-task）
 
 ```
 
