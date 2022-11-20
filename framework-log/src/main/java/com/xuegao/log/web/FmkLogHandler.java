@@ -21,7 +21,9 @@ public class FmkLogHandler {
         // 如果没有获取到，则重新生成一个traceId
         if (StringUtils.isBlank(context.getTraceId())) {
             context.setTraceId(XuegaoIdGeneratorLoader.getIdGenerator().nextId());
-            log.info("[xue-gao-framework][FmkLogHandler][processProviderSide][重新生成traceId[{}]", context.getTraceId());
+            if (log.isDebugEnabled()) {
+                log.debug("[xue-gao-framework][FmkLogHandler][processProviderSide][重新生成traceId[{}]", context.getTraceId());
+            }
         }
         String hostIp = LocalhostUtil.getHostIp();
 
@@ -29,6 +31,9 @@ public class FmkLogHandler {
         MDC.put(FmkConstant.FMK_LOG_MDC_KEY, context.getTraceId() + FmkConstant.SYMBOL_UNDERLINE + hostIp);
         MDC.put(FmkConstant.FMK_LOG_TRACE_ID_KEY, context.getTraceId());
         MDC.put(FmkConstant.FMK_LOG_MDC_CURR_IP_KEY, hostIp);
+        if (log.isDebugEnabled()) {
+            log.debug("[xue-gao-framework][FmkLogHandler][processRequest][MDC.getTraceId={}]", MDC.get(FmkConstant.FMK_LOG_TRACE_ID_KEY));
+        }
     }
 
     public void processResponseByClean() {
@@ -37,11 +42,16 @@ public class FmkLogHandler {
             context = ContextUtil.setDefaultContext();
         }
         context.setTraceId("");
-
+        if (log.isDebugEnabled()) {
+            log.debug("[xue-gao-framework][FmkLogHandler][processResponseByClean][MDC.getTraceId={}]", MDC.get(FmkConstant.FMK_LOG_TRACE_ID_KEY));
+        }
         //移除MDC里的信息
         MDC.remove(FmkConstant.FMK_LOG_MDC_KEY);
         MDC.remove(FmkConstant.FMK_LOG_TRACE_ID_KEY);
         MDC.remove(FmkConstant.FMK_LOG_SPAN_ID_KEY);
         MDC.remove(FmkConstant.FMK_LOG_MDC_CURR_IP_KEY);
+        if (log.isDebugEnabled()) {
+            log.debug("[xue-gao-framework][FmkLogHandler][processResponseByClean][MDC.getTraceId={}]", MDC.get(FmkConstant.FMK_LOG_TRACE_ID_KEY));
+        }
     }
 }

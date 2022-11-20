@@ -122,7 +122,7 @@ public class UniqueIdGenerator {
         }
         lastTime = time;
         if (log.isDebugEnabled()) {
-            log.info("[xue-gao-framework][UniqueIdGenerator][generateId][{}-{}-{}]",
+            log.debug("[xue-gao-framework][UniqueIdGenerator][generateId][{}-{}-{}]",
                     new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date(lastTime)), workerId, sequence);
         }
         return ((time - EPOCH) << TIMESTAMP_LEFT_SHIFT_BITS) | (workerId << WORKER_ID_LEFT_SHIFT_BITS) | sequence;

@@ -138,13 +138,13 @@ public class PrintSqlInterceptor implements Interceptor {
     }
 
     private void formatSqlLog(SqlCommandType sqlCommandType, String sqlId, String sql, long costTime, Object obj) {
-        String log = String.format("DAO [%s]\n[%dms] ===> %s\n", sqlId, costTime, sql);
+        String logStr = String.format("DAO [%s]\n[%dms] ===> %s\n", sqlId, costTime, sql);
 
         if (sqlCommandType == SqlCommandType.UPDATE || sqlCommandType == SqlCommandType.INSERT || sqlCommandType == SqlCommandType.DELETE) {
-            log += "Count ===> " + obj;
+            logStr += "Count ===> " + obj;
         }
         if (costTime > MIN_SIZE) {
-            PrintSqlInterceptor.log.warn(log);
+            log.warn(logStr);
         }
     }
 }

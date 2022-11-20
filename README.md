@@ -13,7 +13,11 @@ sharding-jdbc，分库分表
 mapper，对两个jdbc进行封装
 micro-services，对服务的行为，工具进行封装
 util，工具类
+
 ```
+# maven
+mvn  clean source:jar install -Dmaven.test.skip=true
+
 
 # 0.0.1
 项目搭建起来了

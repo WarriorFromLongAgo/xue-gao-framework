@@ -24,11 +24,13 @@ public final class JsonUtil {
         try {
             string = JSON.toJSONString(object);
         } catch (Exception e) {
+            if (log.isDebugEnabled()) {
+                log.debug("[xuegao-im-chat-2022][JsonUtil][toJsonString][object={}]", JSON.toJSONString(object), e);
+            }
             if (throwException) {
                 e.printStackTrace();
                 throw new RuntimeException("序列化异常", e);
             }
-            log.info("[xuegao-im-chat-2022][JsonUtil][toJsonString][object={}]", JSON.toJSONString(object), e);
         }
         return string;
     }
@@ -73,11 +75,13 @@ public final class JsonUtil {
         try {
             return JSON.parseObject(json, c);
         } catch (Exception e) {
+            if (log.isDebugEnabled()) {
+                log.debug("[xuegao-im-chat-2022][JsonUtil][toClass][json={}]", json, e);
+            }
             if (throwException) {
                 e.printStackTrace();
                 throw new RuntimeException("反序列化异常", e);
             }
-            log.info("[xuegao-im-chat-2022][JsonUtil][toClass][json={}]", json, e);
         }
         return null;
     }
