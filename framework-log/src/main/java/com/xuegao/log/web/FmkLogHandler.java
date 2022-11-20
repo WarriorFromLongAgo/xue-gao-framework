@@ -14,7 +14,7 @@ import org.slf4j.MDC;
 public class FmkLogHandler {
     private static final Logger log = LoggerFactory.getLogger(FmkLogHandler.class);
 
-    public void processRequest(Context context) {
+    public void processBefore(Context context) {
         if (ObjectUtils.isEmpty(context)) {
             context = ContextUtil.setDefaultContext();
         }
@@ -36,7 +36,7 @@ public class FmkLogHandler {
         }
     }
 
-    public void processResponseByClean() {
+    public void processAfterByClean() {
         Context context = ContextUtil.get();
         if (context == null) {
             context = ContextUtil.setDefaultContext();

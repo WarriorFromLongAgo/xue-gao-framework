@@ -24,10 +24,10 @@ public class FmkLogWebUtil extends FmkLogHandler {
             context = ContextUtil.setDefaultContext();
         }
         context.setTraceId(traceId);
-        processRequest(context);
+        processBefore(context);
     }
 
     public void afterCompletion() {
-        processResponseByClean();
+        processAfterByClean();
     }
 }
