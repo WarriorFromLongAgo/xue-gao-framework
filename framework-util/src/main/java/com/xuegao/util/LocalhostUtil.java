@@ -1,6 +1,5 @@
 package com.xuegao.util;
 
-import com.sun.xml.internal.ws.util.UtilException;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 
@@ -94,11 +93,11 @@ public class LocalhostUtil {
         try {
             networkInterfaces = NetworkInterface.getNetworkInterfaces();
         } catch (SocketException e) {
-            throw new UtilException(e);
+            throw new RuntimeException(e);
         }
 
         if (networkInterfaces == null) {
-            throw new UtilException("Get network interface error!");
+            throw new RuntimeException("Get network interface error!");
         }
 
         final LinkedHashSet<InetAddress> ipSet = new LinkedHashSet<>();
