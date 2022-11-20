@@ -21,6 +21,7 @@ import com.xuegao.core.model.FmkUserInfo;
 import com.xuegao.mapper.enums.DelFlagEnum;
 import com.xuegao.mapper.model.GenericModel;
 import com.xuegao.mapper.model.GenericModelField;
+import com.xuegao.util.JsonUtil;
 import com.xuegao.util.time.LocalDateTimeUtil;
 import lombok.SneakyThrows;
 import org.apache.commons.lang3.ObjectUtils;
@@ -321,8 +322,19 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
             // }
             updateWrapper.set(tableFieldInfo.getColumn(), fieldValue);
         }
+        if (log.isDebugEnabled()) {
+            log.info("[xue-gao-framework][AbstractMpServiceV2][mpUpdate][={}]", Thread.currentThread().getName());
+        }
+        if (log.isDebugEnabled()) {
+            String string1 = JsonUtil.toJsonString(ContextUtil.get());
+            log.info("[xue-gao-framework][AbstractMpServiceV2][mpUpdate][context1={}]", string1);
+        }
         updateWrapper.eq(GenericModelField.FILED_ID, t.getId());
         this.setDefault(updateWrapper);
+        if (log.isDebugEnabled()) {
+            String string2 = JsonUtil.toJsonString(ContextUtil.get());
+            log.debug("[xue-gao-framework][AbstractMpServiceV2][mpUpdate][context2={}]", string2);
+        }
         boolean update = super.update(updateWrapper);
         if (!update) {
             log.info("[xue-gao-framework][AbstractMpServiceV2][mpUpdate][update={}]", update);
@@ -424,8 +436,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
      * @date 2022/11/5 14:59
      */
     public void setDefault(LambdaUpdateWrapper<T> updateWrapper) {
-        ContextUtil.setDefaultContext();
-        Context context = ContextUtil.get();
+        Context context = ContextUtil.setDefaultContext();
         FmkUserInfo fmkUserInfo = context.getUserInfo();
 
         updateWrapper.set(GenericModel::getUpdatedBy, fmkUserInfo.getUserId());
@@ -434,8 +445,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
     }
 
     public void setDefault(UpdateWrapper<T> updateWrapper) {
-        ContextUtil.setDefaultContext();
-        Context context = ContextUtil.get();
+        Context context = ContextUtil.setDefaultContext();
         FmkUserInfo fmkUserInfo = context.getUserInfo();
 
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_BY, fmkUserInfo.getUserId());
@@ -444,8 +454,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
     }
 
     public void setDefaultByInsert(T t) {
-        ContextUtil.setDefaultContext();
-        Context context = ContextUtil.get();
+        Context context = ContextUtil.setDefaultContext();
         FmkUserInfo fmkUserInfo = context.getUserInfo();
         LocalDateTime now = LocalDateTimeUtil.now();
 
@@ -457,8 +466,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
     }
 
     public void setDefaultByInsert(Collection<T> tCollect) {
-        ContextUtil.setDefaultContext();
-        Context context = ContextUtil.get();
+        Context context = ContextUtil.setDefaultContext();
         FmkUserInfo fmkUserInfo = context.getUserInfo();
         LocalDateTime now = LocalDateTimeUtil.now();
 
