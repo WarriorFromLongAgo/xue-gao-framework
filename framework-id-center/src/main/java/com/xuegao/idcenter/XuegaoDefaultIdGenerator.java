@@ -1,7 +1,7 @@
 package com.xuegao.idcenter;
 
 
-import com.xuegao.idcenter.diysnowflake.UniqueIdGenerator;
+import com.xuegao.idcenter.snowflake.UniqueIdGenerator;
 
 public class XuegaoDefaultIdGenerator extends XuegaoIdGenerator {
     @Override

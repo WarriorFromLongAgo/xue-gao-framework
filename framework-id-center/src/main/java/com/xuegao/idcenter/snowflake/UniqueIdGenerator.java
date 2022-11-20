@@ -1,4 +1,4 @@
-package com.xuegao.idcenter.diysnowflake;
+package com.xuegao.idcenter.snowflake;
 
 import com.xuegao.util.time.IClock;
 import org.slf4j.Logger;
