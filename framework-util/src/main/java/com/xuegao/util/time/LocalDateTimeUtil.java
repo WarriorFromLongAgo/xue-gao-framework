@@ -18,6 +18,7 @@ public class LocalDateTimeUtil {
     public static final String PATTERN_YYYY_MM_DD_HH_MM_00 = "yyyy-MM-dd HH:mm:00";
     public static final String PATTERN_YYYYMMDDHHMM = "yyyyMMddHHmm";
     public static final String PATTERN_YYYY_MM_DD_HH_MM = "yyyy-MM-dd HH:mm";
+    public static final String PATTERN_YYYY_MM_DD_HH = "yyyy-MM-dd HH";
     public static final String PATTERN_YYYY_MM_DD = "yyyy-MM-dd";
     public static final String PATTERN_HH_MM_SS = "HH:mm:ss";
     public static final String PATTERN_HH_MM = "HH:mm";
