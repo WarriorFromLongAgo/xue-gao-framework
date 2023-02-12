@@ -437,7 +437,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
      */
     public void setDefault(LambdaUpdateWrapper<T> updateWrapper) {
         Context context = ContextUtil.setDefaultContext();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
 
         updateWrapper.set(GenericModel::getUpdatedBy, fmkUserInfo.getUserId());
         updateWrapper.set(GenericModel::getUpdatedTime, LocalDateTimeUtil.now());
@@ -446,7 +446,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
 
     public void setDefault(UpdateWrapper<T> updateWrapper) {
         Context context = ContextUtil.setDefaultContext();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
 
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_BY, fmkUserInfo.getUserId());
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_TIME, LocalDateTimeUtil.now());
@@ -455,7 +455,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
 
     public void setDefaultByInsert(T t) {
         Context context = ContextUtil.setDefaultContext();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
         LocalDateTime now = LocalDateTimeUtil.now();
 
         t.setCreatedBy(fmkUserInfo.getUserId());
@@ -467,7 +467,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
 
     public void setDefaultByInsert(Collection<T> tCollect) {
         Context context = ContextUtil.setDefaultContext();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
         LocalDateTime now = LocalDateTimeUtil.now();
 
         for (T t : tCollect) {

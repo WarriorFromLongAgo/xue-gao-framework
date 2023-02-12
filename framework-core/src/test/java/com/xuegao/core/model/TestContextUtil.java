@@ -6,7 +6,7 @@ public class TestContextUtil {
     public static void main(String[] args) {
         ContextUtil.setDefaultContext();
         Context context = ContextUtil.get();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
 
 
     }

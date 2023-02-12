@@ -20,7 +20,7 @@ public class Context implements Serializable {
     /**
      * 一次登录，一个会话id
      */
-    private String sessionId;
+    private String token;
 
     /**
      * 灰度标识
@@ -81,21 +81,6 @@ public class Context implements Serializable {
         this.ipAddress = ipAddress;
     }
 
-    public FmkUserInfo getUserInfo() {
-        if (fmkUserInfo == null) {
-            fmkUserInfo = new FmkUserInfo();
-        }
-        return fmkUserInfo;
-    }
-
-    public void setUserInfo(FmkUserInfo fmkUserInfo) {
-        this.fmkUserInfo = fmkUserInfo;
-        if (this.fmkUserInfo != null) {
-            this.userId = this.fmkUserInfo.getUserId();
-        }
-    }
-
-
     public String getTraceId() {
         return traceId;
     }
@@ -108,12 +93,20 @@ public class Context implements Serializable {
         this.userId = userId;
     }
 
-    public String getSessionId() {
-        return sessionId;
+    public String getToken() {
+        return token;
     }
 
-    public void setSessionId(String sessionId) {
-        this.sessionId = sessionId;
+    public void setToken(String token) {
+        this.token = token;
+    }
+
+    public FmkUserInfo getFmkUserInfo() {
+        return fmkUserInfo;
+    }
+
+    public void setFmkUserInfo(FmkUserInfo fmkUserInfo) {
+        this.fmkUserInfo = fmkUserInfo;
     }
 
     public ConcurrentMap<String, Object> getGlobalParamMap() {
