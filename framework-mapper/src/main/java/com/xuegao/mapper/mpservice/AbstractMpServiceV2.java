@@ -183,7 +183,8 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
         if (ObjectUtils.isEmpty(ids)) {
             return Lists.newArrayList();
         }
-        return super.listByIds(Lists.newArrayList(ids));
+        List<T> listByIds = super.listByIds(Lists.newArrayList(ids));
+        return dealReturnList(listByIds);
     }
 
     /**
