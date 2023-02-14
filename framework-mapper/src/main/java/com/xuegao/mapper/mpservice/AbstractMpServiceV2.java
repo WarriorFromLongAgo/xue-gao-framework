@@ -487,4 +487,20 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
         T entity = updateWrapper.getEntity();
 
     }
+
+    /**
+     * 处理返参的list
+     * dealReturnList
+     *
+     * @param inputList:
+     * @return java.util.List<T>
+     * @author xuegao
+     * @date 2023/2/14 13:24
+     */
+    public List<T> dealReturnList(List<T> inputList) {
+        if (ObjectUtils.isEmpty(inputList)) {
+            return Lists.newArrayList();
+        }
+        return inputList;
+    }
 }
