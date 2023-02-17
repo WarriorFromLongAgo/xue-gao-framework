@@ -1,5 +1,6 @@
 package com.xuegao.core.model;
 
+import org.apache.commons.lang3.ObjectUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -107,6 +108,9 @@ public class Context implements Serializable {
 
     public void setFmkUserInfo(FmkUserInfo fmkUserInfo) {
         this.fmkUserInfo = fmkUserInfo;
+        if (ObjectUtils.isNotEmpty(fmkUserInfo) && ObjectUtils.isNotEmpty(fmkUserInfo.getUserId())) {
+            this.setUserId(fmkUserInfo.getUserId());
+        }
     }
 
     public ConcurrentMap<String, Object> getGlobalParamMap() {
