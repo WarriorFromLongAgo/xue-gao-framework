@@ -5,7 +5,9 @@ import java.io.Serializable;
 public class FmkUserInfo implements Serializable {
     private static final long serialVersionUID = 1L;
     public static final String KEY_PREFIX = "XUEGAO-";
-    public static final String KEY_UID = "userId";
+    public static final String KEY_TOKEN = "token";
+    public static final String KEY_USER_ID = "userId";
+    public static final String KEY_USER_NUMBER = "userNumber";
     public static final String KEY_USERNAME = "username";
     public static final String KEY_NICKNAME = "nickname";
     public static final String KEY_PHONE = "phone";

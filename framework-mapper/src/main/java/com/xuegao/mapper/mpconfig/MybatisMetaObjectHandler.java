@@ -21,7 +21,7 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
         log.info("[xue-gao-framework][MybatisMetaObjectHandler][insertFill][metaObject={}]", JsonUtil.toJsonString(metaObject));
         ContextUtil.setDefaultContext();
         Context context = ContextUtil.get();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
 
         // 起始版本 3.3.0(推荐使用)
         // this.strictInsertFill(metaObject, "createTime", LocalDateTime.class, LocalDateTime.now());
@@ -66,7 +66,7 @@ public class MybatisMetaObjectHandler implements MetaObjectHandler {
         // log.info("[xue-gao-framework][MybatisMetaObjectHandler][updateFill][metaObject={}]", JsonUtil.toJsonString(metaObject));
         // ContextUtil.setDefaultContext();
         // Context context = ContextUtil.get();
-        // FmkUserInfo fmkUserInfo = context.getUserInfo();
+        // FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
         // // 起始版本 3.3.0(推荐)
         // // this.strictUpdateFill(metaObject, "updateTime", LocalDateTime.class, LocalDateTime.now());
         // // 或者

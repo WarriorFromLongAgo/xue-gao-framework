@@ -183,7 +183,8 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
         if (ObjectUtils.isEmpty(ids)) {
             return Lists.newArrayList();
         }
-        return super.listByIds(Lists.newArrayList(ids));
+        List<T> listByIds = super.listByIds(Lists.newArrayList(ids));
+        return dealReturnList(listByIds);
     }
 
     /**
@@ -437,7 +438,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
      */
     public void setDefault(LambdaUpdateWrapper<T> updateWrapper) {
         Context context = ContextUtil.setDefaultContext();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
 
         updateWrapper.set(GenericModel::getUpdatedBy, fmkUserInfo.getUserId());
         updateWrapper.set(GenericModel::getUpdatedTime, LocalDateTimeUtil.now());
@@ -446,7 +447,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
 
     public void setDefault(UpdateWrapper<T> updateWrapper) {
         Context context = ContextUtil.setDefaultContext();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
 
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_BY, fmkUserInfo.getUserId());
         updateWrapper.set(GenericModelField.FILED_SQL_COLUMN_UPDATED_TIME, LocalDateTimeUtil.now());
@@ -455,7 +456,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
 
     public void setDefaultByInsert(T t) {
         Context context = ContextUtil.setDefaultContext();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
         LocalDateTime now = LocalDateTimeUtil.now();
 
         t.setCreatedBy(fmkUserInfo.getUserId());
@@ -467,7 +468,7 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
 
     public void setDefaultByInsert(Collection<T> tCollect) {
         Context context = ContextUtil.setDefaultContext();
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
         LocalDateTime now = LocalDateTimeUtil.now();
 
         for (T t : tCollect) {
@@ -486,5 +487,21 @@ public abstract class AbstractMpServiceV2<M extends BaseMapper<T>, T extends Gen
         LambdaUpdateWrapper<T> updateWrapper = Wrappers.lambdaUpdate(getEntityClass());
         T entity = updateWrapper.getEntity();
 
+    }
+
+    /**
+     * 处理返参的list
+     * dealReturnList
+     *
+     * @param inputList:
+     * @return java.util.List<T>
+     * @author xuegao
+     * @date 2023/2/14 13:24
+     */
+    public List<T> dealReturnList(List<T> inputList) {
+        if (ObjectUtils.isEmpty(inputList)) {
+            return Lists.newArrayList();
+        }
+        return inputList;
     }
 }

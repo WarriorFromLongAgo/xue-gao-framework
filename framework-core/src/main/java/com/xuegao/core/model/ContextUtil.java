@@ -45,7 +45,7 @@ public class ContextUtil {
         if (Objects.isNull(context)) {
             context = new Context();
         }
-        FmkUserInfo fmkUserInfo = context.getUserInfo();
+        FmkUserInfo fmkUserInfo = context.getFmkUserInfo();
         if (Objects.isNull(fmkUserInfo)
                 || StringUtils.isBlank(fmkUserInfo.getUserId())
                 || StringUtils.isBlank(fmkUserInfo.getUserNumber())
@@ -55,7 +55,7 @@ public class ContextUtil {
             fmkUserInfo.setUserId(FmkUserInfo.USERINFO_SYSTEM_NUMBER);
             fmkUserInfo.setUsername(FmkUserInfo.USERINFO_SYSTEM);
             fmkUserInfo.setUserNumber(FmkUserInfo.USERINFO_SYSTEM_NUMBER);
-            context.setUserInfo(fmkUserInfo);
+            context.setFmkUserInfo(fmkUserInfo);
         }
         ContextUtil.set(context);
         return context;
