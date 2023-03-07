@@ -6,6 +6,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.util.ObjectUtils;
 
+import java.util.Objects;
+
 /**
  * JSON 转换
  */
@@ -42,7 +44,7 @@ public final class JsonUtil {
      * @return json 串 or null
      */
     public static String toJsonString(Object object) {
-        if (ObjectUtils.isEmpty(object)) {
+        if (Objects.isNull(object)) {
             return null;
         }
         return toJsonString(object, Boolean.FALSE);
