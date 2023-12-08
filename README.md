@@ -35,3 +35,12 @@ mvn clean source:jar install -Dmaven.test.skip=true
 # 0.0.3
 
 每个包应该都有名字，，否则直接扫描com.xuegao，引入的东西太多了。 升级0.0.3 ，增加每个包的三级包名
+
+
+
+common-core 用于任意 java 项目的依赖.
+common-spring 用于 spring 项目的依赖
+common-mvc 用于 spring-mvc 项目的依赖.
+common-webflux 用于 webflux 项目的依赖
+common-micro-service 任何 springcloud 项目可以依赖.
+common-config 任何 springboot 项目可以依赖, 主要使用的通常配置项 和 配置文件都在里面了. 例如 log4j2 配置文件.
