@@ -26,18 +26,30 @@ public class LocalDateTimeUtil {
 
     // region str interconversion LocalDateTime
 
+    /**
+     * 字符串 转 时间
+     */
     public static LocalDateTime strToLocalDateTime(String str) {
         return LocalDateTime.parse(str, DateTimeFormatter.ofPattern(PATTERN_YYYY_MM_DD_HH_MM_SS));
     }
 
+    /**
+     * 字符串 转 时间
+     */
     public static LocalDateTime strToLocalDateTime(String str, String pattern) {
         return LocalDateTime.parse(str, DateTimeFormatter.ofPattern(pattern));
     }
 
+    /**
+     * 时间 转 字符串
+     */
     public static String localDateTimeToStr(LocalDateTime localDateTime) {
         return localDateTimeToStr(localDateTime, PATTERN_YYYY_MM_DD_HH_MM_SS);
     }
 
+    /**
+     * 时间 转 字符串
+     */
     public static String localDateTimeToStr(LocalDateTime localDateTime, String pattern) {
         return localDateTime.format(DateTimeFormatter.ofPattern(pattern));
     }
@@ -55,6 +67,7 @@ public class LocalDateTimeUtil {
      *
      * @param l1:
      * @param l2:
+     *
      * @return int
      * @author xuegao
      * @date 2022/6/29 15:30
@@ -63,6 +76,9 @@ public class LocalDateTimeUtil {
         return l1.compareTo(l2);
     }
 
+    /**
+     * 获取当前时间
+     */
     public static LocalDateTime now() {
         return LocalDateTime.now();
     }
@@ -76,6 +92,7 @@ public class LocalDateTimeUtil {
      * plusDays
      *
      * @param seconds:
+     *
      * @return java.time.LocalDateTime
      * @author xuegao
      * @date 2022/6/29 15:24
@@ -90,6 +107,7 @@ public class LocalDateTimeUtil {
      * plusDays
      *
      * @param seconds:
+     *
      * @return java.time.LocalDateTime
      * @author xuegao
      * @date 2022/6/29 15:24
@@ -103,6 +121,7 @@ public class LocalDateTimeUtil {
      * plusDays
      *
      * @param minutes:
+     *
      * @return java.time.LocalDateTime
      * @author xuegao
      * @date 2022/6/29 15:24
@@ -117,6 +136,7 @@ public class LocalDateTimeUtil {
      * plusDays
      *
      * @param minutes:
+     *
      * @return java.time.LocalDateTime
      * @author xuegao
      * @date 2022/6/29 15:24
@@ -130,6 +150,7 @@ public class LocalDateTimeUtil {
      * plusDays
      *
      * @param days:
+     *
      * @return java.time.LocalDateTime
      * @author xuegao
      * @date 2022/6/29 15:24
@@ -144,12 +165,42 @@ public class LocalDateTimeUtil {
      * plusDays
      *
      * @param days:
+     *
      * @return java.time.LocalDateTime
      * @author xuegao
      * @date 2022/6/29 15:24
      */
     public static LocalDateTime plusDays(LocalDateTime localDateTime, long days) {
         return localDateTime.plusDays(days);
+    }
+
+    /**
+     * 获取一个时间，负数是过去的，正数是现在的
+     * plusDays
+     *
+     * @param months:
+     *
+     * @return java.time.LocalDateTime
+     * @author xuegao
+     * @date 2022/6/29 15:24
+     */
+    public static LocalDateTime plusMonths(long months) {
+        LocalDateTime nowLocalDateTime = LocalDateTime.now();
+        return plusMonths(nowLocalDateTime, months);
+    }
+
+    /**
+     * 获取一个时间，负数是过去的，正数是现在的
+     * plusDays
+     *
+     * @param months:
+     *
+     * @return java.time.LocalDateTime
+     * @author xuegao
+     * @date 2022/6/29 15:24
+     */
+    public static LocalDateTime plusMonths(LocalDateTime localDateTime, long months) {
+        return localDateTime.plusMonths(months);
     }
 
     // endregion
@@ -178,9 +229,7 @@ public class LocalDateTimeUtil {
     }
 
     public static LocalDateTime toLocalDateTime(Date date) {
-        return new java.util.Date(date.getTime()).toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDateTime();
+        return new java.util.Date(date.getTime()).toInstant().atZone(ZoneId.systemDefault()).toLocalDateTime();
     }
 
     // endregion
@@ -192,6 +241,7 @@ public class LocalDateTimeUtil {
      *
      * @param date1 时间1
      * @param date2 时间2
+     *
      * @author xuegao
      */
     public static long differentSeconds(LocalDateTime date1, LocalDateTime date2) {
@@ -203,6 +253,7 @@ public class LocalDateTimeUtil {
      *
      * @param date1 时间1
      * @param date2 时间2
+     *
      * @author xuegao
      */
     public static long differentSeconds(LocalDate date1, LocalDate date2) {
@@ -227,6 +278,7 @@ public class LocalDateTimeUtil {
      *
      * @param date1 时间1
      * @param date2 时间2
+     *
      * @author xuegao
      */
     public static long differentDays(LocalDateTime date1, LocalDateTime date2) {
@@ -238,6 +290,7 @@ public class LocalDateTimeUtil {
      *
      * @param date1 时间1
      * @param date2 时间2
+     *
      * @author xuegao
      */
     public static long differentDays(LocalDate date1, LocalDate date2) {
@@ -260,18 +313,19 @@ public class LocalDateTimeUtil {
      *
      * @param dt1 第一个时间点
      * @param dt2 第二个时间点
+     *
      * @return int，即需求的月数差
      */
     public static int differentMonths(LocalDateTime dt1, LocalDateTime dt2) {
-        //获取第一个时间点的月份
+        // 获取第一个时间点的月份
         int month1 = dt1.getMonthValue();
-        //获取第一个时间点的年份
+        // 获取第一个时间点的年份
         int year1 = dt1.getYear();
-        //获取第一个时间点的月份
+        // 获取第一个时间点的月份
         int month2 = dt2.getMonthValue();
-        //获取第一个时间点的年份
+        // 获取第一个时间点的年份
         int year2 = dt2.getYear();
-        //返回两个时间点的月数差
+        // 返回两个时间点的月数差
         return (year2 - year1) * 12 + (month2 - month1);
     }
 
@@ -280,18 +334,19 @@ public class LocalDateTimeUtil {
      *
      * @param dt1 第一个时间点
      * @param dt2 第二个时间点
+     *
      * @return int，即需求的月数差
      */
     public static int differentMonths(LocalDate dt1, LocalDate dt2) {
-        //获取第一个时间点的月份
+        // 获取第一个时间点的月份
         int month1 = dt1.getMonthValue();
-        //获取第一个时间点的年份
+        // 获取第一个时间点的年份
         int year1 = dt1.getYear();
-        //获取第一个时间点的月份
+        // 获取第一个时间点的月份
         int month2 = dt2.getMonthValue();
-        //获取第一个时间点的年份
+        // 获取第一个时间点的年份
         int year2 = dt2.getYear();
-        //返回两个时间点的月数差
+        // 返回两个时间点的月数差
         return (year2 - year1) * 12 + (month2 - month1);
     }
 
@@ -300,6 +355,7 @@ public class LocalDateTimeUtil {
      *
      * @param date1 第一个时间点
      * @param date2 第二个时间点
+     *
      * @return int，即需求的月数差
      */
     public static int differentMonths(String date1, String date2, String pattern) {
@@ -376,7 +432,53 @@ public class LocalDateTimeUtil {
     }
     // endregion
 
-    // region 获取入参中，秒的最大值，秒的最小值
+    // region 获取月初月末 获取天初天末 获取年初年末
+
+    /**
+     * 获取当天的凌晨（天初）
+     */
+    public static LocalDateTime getDayBegin(LocalDateTime inputLocalDateTime) {
+        return LocalDateTime.of(inputLocalDateTime.toLocalDate(), LocalTime.MIN);
+    }
+
+    /**
+     * 获取当天的最后一秒（天末）
+     */
+    public static LocalDateTime getDayEnd(LocalDateTime inputLocalDateTime) {
+        return LocalDateTime.of(inputLocalDateTime.toLocalDate(), LocalTime.MAX);
+    }
+
+    /**
+     * 获取当月的第一秒
+     */
+    public static LocalDateTime getMonthBegin(LocalDateTime inputLocalDateTime) {
+        LocalDate localDate = inputLocalDateTime.toLocalDate();
+        return LocalDateTime.of(localDate.withDayOfMonth(1), LocalTime.MIN);
+    }
+
+    /**
+     * 获取当月最后一秒
+     */
+    public static LocalDateTime getMonthEnd(LocalDateTime inputLocalDateTime) {
+        return inputLocalDateTime.withDayOfMonth(
+                        inputLocalDateTime.getMonth().length(inputLocalDateTime.toLocalDate().isLeapYear()))
+                .withHour(23).withMinute(59).withSecond(59);
+    }
+
+    /**
+     * 获取当年的第一天的凌晨（年初）
+     */
+    public static LocalDateTime getYearBegin(LocalDateTime inputLocalDateTime) {
+        return LocalDateTime.of(inputLocalDateTime.toLocalDate().getYear(), 1, 1, 0, 0, 0);
+    }
+
+    /**
+     * 获取当年的最后一天的最后一秒（年末）
+     */
+    public static LocalDateTime getYearEnd(LocalDateTime inputLocalDateTime) {
+        return LocalDateTime.of(inputLocalDateTime.toLocalDate().getYear(), 12, 31, 23, 59, 59);
+    }
+
     public static LocalDateTime localDateTimeSetSecond00(LocalDateTime inputLocalDateTime) {
         LocalDate localDate = inputLocalDateTime.toLocalDate();
         // 指定两位整数，
@@ -408,6 +510,7 @@ public class LocalDateTimeUtil {
      *
      * @param inputLocalDateTime:
      * @param minutes:
+     *
      * @return java.time.LocalDateTime
      * @author xuegao
      * @date 2022/8/11 13:19
@@ -430,63 +533,83 @@ public class LocalDateTimeUtil {
     // endregion
 
     public static void main(String[] args) {
-        // 测试早上
-        LocalDateTime testLocalDateTime1 = strToLocalDateTime("2022-06-29 15:31:00");
-        // 测试下午
-        LocalDateTime testLocalDateTime2 = strToLocalDateTime("2022-06-30 05:31:00");
-        LocalDate testLocalDate1 = strToLocalDate("2022-06-29");
-        // 测试对比
-        int compare = compare(testLocalDateTime1, testLocalDateTime2);
-        System.out.println("1 = " + compare);
-        compare = compare(testLocalDateTime2, testLocalDateTime1);
-        System.out.println("2 = " + compare);
-        // 测试加减时间
-        LocalDateTime localDateTime = plusDays(-182);
-        System.out.println(LocalDateTimeUtil.localDateTimeToStr(localDateTime));
+        // // 测试早上
+        // LocalDateTime testLocalDateTime1 = strToLocalDateTime("2022-06-29 15:31:00");
+        // // 测试下午
+        // LocalDateTime testLocalDateTime2 = strToLocalDateTime("2022-06-30 05:31:00");
+        // LocalDate testLocalDate1 = strToLocalDate("2022-06-29");
+        // // 测试对比
+        // int compare = compare(testLocalDateTime1, testLocalDateTime2);
+        // System.out.println("1 = " + compare);
+        // compare = compare(testLocalDateTime2, testLocalDateTime1);
+        // System.out.println("2 = " + compare);
+        // // 测试加减时间
+        // LocalDateTime localDateTime = plusDays(-182);
+        // System.out.println(LocalDateTimeUtil.localDateTimeToStr(localDateTime));
+        //
+        // // 测试时间的对比
+        // long differentSeconds = differentSeconds("2022-06-30 15:31:00", "2022-06-30 15:32:00", PATTERN_YYYY_MM_DD_HH_MM_SS);
+        // System.out.println(differentSeconds);
+        // differentSeconds = differentSeconds("2020-04-23", "2021-04-23", PATTERN_YYYY_MM_DD);
+        // System.out.println(differentSeconds);
+        //
+        // // long differentMinutes = differentMinutes("2022-06-30 15:31:00", "2022-06-30 15:32:00", PATTERN_YYYY_MM_DD_HH_MM_SS);
+        // // System.out.println(differentMinutes);
+        // // differentMinutes = differentMinutes("2020-04-23", "2021-04-23", PATTERN_YYYY_MM_DD);
+        // // System.out.println(differentMinutes);
+        //
+        // long differentDays = differentDays("2022-06-30 15:31:00", "2022-07-29 15:31:00", PATTERN_YYYY_MM_DD_HH_MM_SS);
+        // System.out.println(differentDays);
+        // differentDays = differentDays("2020-04-23", "2021-04-23", PATTERN_YYYY_MM_DD);
+        // System.out.println(differentDays);
+        //
+        // long differentMonths = differentMonths("2022-06-30 15:31:00", "2022-07-31 15:31:00", PATTERN_YYYY_MM_DD_HH_MM_SS);
+        // System.out.println(differentMonths);
+        // differentMonths = differentDays("2022-07-13", "2023-07-12", PATTERN_YYYY_MM_DD);
+        // System.out.println(differentMonths);
+        //
+        // System.out.println("LocalDate begin ");
+        // LocalDateTime localDateToLocalDateTime = localDateToLocalDateTime(testLocalDate1, LocalTime.MAX);
+        // System.out.println(localDateTimeToStr(localDateToLocalDateTime));
+        // LocalDateTime localDateToLocalDateTime2359 = localDateToLocalDateTime2359(testLocalDate1);
+        // System.out.println(localDateTimeToStr(localDateToLocalDateTime2359));
+        // LocalDateTime localDateToLocalDateTime0000 = localDateToLocalDateTime0000(testLocalDate1);
+        // System.out.println(localDateTimeToStr(localDateToLocalDateTime0000));
+        // System.out.println("LocalDate end ");
+        //
+        // LocalDateTime test1Second00 = localDateTimeSetSecond00(testLocalDateTime1);
+        // System.out.println(localDateTimeToStr(test1Second00));
+        // LocalDateTime test2Second00 = localDateTimeSetSecond00(testLocalDateTime2);
+        // System.out.println(localDateTimeToStr(test2Second00));
+        //
+        // LocalDateTime test1Second59 = localDateTimeSetSecond59(testLocalDateTime1);
+        // System.out.println(localDateTimeToStr(test1Second59));
+        // LocalDateTime test2Second59 = localDateTimeSetSecond59(testLocalDateTime2);
+        // System.out.println(localDateTimeToStr(test2Second59));
+        //
+        // LocalDateTime test1AddMinutesSetSecond00 = localDateTimeAddMinutesSetSecond00(testLocalDateTime1, 1);
+        // System.out.println(localDateTimeToStr(test1AddMinutesSetSecond00));
+        // LocalDateTime test2AddMinutesSetSecond00 = localDateTimeAddMinutesSetSecond00(testLocalDateTime2, 1);
+        // System.out.println(localDateTimeToStr(test2AddMinutesSetSecond00));
 
-        // 测试时间的对比
-        long differentSeconds = differentSeconds("2022-06-30 15:31:00", "2022-06-30 15:32:00", PATTERN_YYYY_MM_DD_HH_MM_SS);
-        System.out.println(differentSeconds);
-        differentSeconds = differentSeconds("2020-04-23", "2021-04-23", PATTERN_YYYY_MM_DD);
-        System.out.println(differentSeconds);
+        LocalDateTime dayBegin = getDayBegin(now());
+        System.out.println(localDateTimeToStr(dayBegin));
+        LocalDateTime dayEnd = getDayEnd(now());
+        System.out.println(localDateTimeToStr(dayEnd));
 
-        // long differentMinutes = differentMinutes("2022-06-30 15:31:00", "2022-06-30 15:32:00", PATTERN_YYYY_MM_DD_HH_MM_SS);
-        // System.out.println(differentMinutes);
-        // differentMinutes = differentMinutes("2020-04-23", "2021-04-23", PATTERN_YYYY_MM_DD);
-        // System.out.println(differentMinutes);
+        LocalDateTime monthBegin = getMonthBegin(now());
+        System.out.println(localDateTimeToStr(monthBegin));
+        LocalDateTime monthEnd = getMonthEnd(now());
+        System.out.println(localDateTimeToStr(monthEnd));
 
-        long differentDays = differentDays("2022-06-30 15:31:00", "2022-07-29 15:31:00", PATTERN_YYYY_MM_DD_HH_MM_SS);
-        System.out.println(differentDays);
-        differentDays = differentDays("2020-04-23", "2021-04-23", PATTERN_YYYY_MM_DD);
-        System.out.println(differentDays);
+        LocalDateTime monthBegin_1 = getMonthBegin(plusMonths(-1));
+        System.out.println(localDateTimeToStr(monthBegin_1));
+        LocalDateTime monthEnd_1 = getMonthEnd(plusMonths(-1));
+        System.out.println(localDateTimeToStr(monthEnd_1));
 
-        long differentMonths = differentMonths("2022-06-30 15:31:00", "2022-07-31 15:31:00", PATTERN_YYYY_MM_DD_HH_MM_SS);
-        System.out.println(differentMonths);
-        differentMonths = differentDays("2022-07-13", "2023-07-12", PATTERN_YYYY_MM_DD);
-        System.out.println(differentMonths);
-
-        System.out.println("LocalDate begin ");
-        LocalDateTime localDateToLocalDateTime = localDateToLocalDateTime(testLocalDate1, LocalTime.MAX);
-        System.out.println(localDateTimeToStr(localDateToLocalDateTime));
-        LocalDateTime localDateToLocalDateTime2359 = localDateToLocalDateTime2359(testLocalDate1);
-        System.out.println(localDateTimeToStr(localDateToLocalDateTime2359));
-        LocalDateTime localDateToLocalDateTime0000 = localDateToLocalDateTime0000(testLocalDate1);
-        System.out.println(localDateTimeToStr(localDateToLocalDateTime0000));
-        System.out.println("LocalDate end ");
-
-        LocalDateTime test1Second00 = localDateTimeSetSecond00(testLocalDateTime1);
-        System.out.println(localDateTimeToStr(test1Second00));
-        LocalDateTime test2Second00 = localDateTimeSetSecond00(testLocalDateTime2);
-        System.out.println(localDateTimeToStr(test2Second00));
-
-        LocalDateTime test1Second59 = localDateTimeSetSecond59(testLocalDateTime1);
-        System.out.println(localDateTimeToStr(test1Second59));
-        LocalDateTime test2Second59 = localDateTimeSetSecond59(testLocalDateTime2);
-        System.out.println(localDateTimeToStr(test2Second59));
-
-        LocalDateTime test1AddMinutesSetSecond00 = localDateTimeAddMinutesSetSecond00(testLocalDateTime1, 1);
-        System.out.println(localDateTimeToStr(test1AddMinutesSetSecond00));
-        LocalDateTime test2AddMinutesSetSecond00 = localDateTimeAddMinutesSetSecond00(testLocalDateTime2, 1);
-        System.out.println(localDateTimeToStr(test2AddMinutesSetSecond00));
+        LocalDateTime yearBegin = getYearBegin(now());
+        System.out.println(localDateTimeToStr(yearBegin));
+        LocalDateTime yearEnd = getYearEnd(now());
+        System.out.println(localDateTimeToStr(yearEnd));
     }
 }
