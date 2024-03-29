@@ -7,5 +7,4 @@ leaf:
   name: xuegao-leaf-id #默认为leaf-id
 logging:
   level:
-    root: debug
-    com.xuegao.idcenter: info
+    root: info
