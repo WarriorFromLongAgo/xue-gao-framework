@@ -7,8 +7,9 @@
     <!--定义日志文件的存储地址 -->
     <!--当前目录下-->
     <property name="LOG_HOME" value="./logs"/>
+    <!--    2024-05-09 16:05:17.657[jeecg-system] [8080] [http-nio-8080-exec-2] [INFO ] [14697491157156096,] [o.j.modules.region.service.impl.RegionServiceImpl:61] - [digitalinfrastructureserver][R-->
     <property name="log.pattern"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS}[${springAppName}] [${serverPort}] [%thread] [%highlight(%-5level)] [%X{fmk_TraceId},%X{fmk_SpanId}] [%cyan(%logger{50}:%L)] - %msg%n"/>
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS}[${springAppName}] [${serverPort}] [%thread] [%highlight(%-5level)] [%X{X_fmk_TraceId},%X{X_fmk_SpanId}] [%cyan(%logger{50}:%L)] - %msg%n"/>
 
     <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
