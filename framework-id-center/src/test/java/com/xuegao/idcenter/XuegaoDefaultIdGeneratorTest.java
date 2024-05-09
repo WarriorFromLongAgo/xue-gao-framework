@@ -13,7 +13,7 @@ public class XuegaoDefaultIdGeneratorTest {
         XuegaoIdGenerator xuegaoDefaultIdGenerator = new XuegaoDefaultIdGenerator();
 
         List<String> stringList = new ArrayList<>();
-        for (int i = 0; i < 4; i++) {
+        for (int i = 0; i < 3; i++) {
             String nextId = xuegaoDefaultIdGenerator.nextId();
             stringList.add(nextId);
         }

@@ -1,41 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<configuration debug="true">
+<configuration debug="false">
     <contextListener class="com.xuegao.log.logback.TtlMdcListener"/>
 
     <springProperty scope="context" name="springAppName" source="spring.application.name"/>
     <springProperty scope="context" name="serverPort" source="server.port"/>
-<!--    <property name="pid" value="${pid}"/>-->
-    <!--    <property name="log.colorPattern"-->
-    <!--              value="%magenta(%d{yyyy-MM-dd HH:mm:ss}) %highlight(%-5level) %boldCyan([${springAppName:-},%X{X-B3-TraceId:-},%X{X-B3-SpanId:-},%X{X-Span-Export:-}]) %yellow(%thread) %green(%logger) %msg%n"/>-->
+    <!--定义日志文件的存储地址 -->
+    <!--当前目录下-->
+    <property name="LOG_HOME" value="./logs"/>
     <property name="log.pattern"
-              value="%d{yyyy-MM-dd HH:mm:ss.SSS} [${springAppName}] [${serverPort}] [%thread] %-5level [%X{fmk_TraceId},%X{fmk_SpanId}] %logger{50} - %msg%n"/>
+              value="%d{yyyy-MM-dd HH:mm:ss.SSS}[${springAppName}] [${serverPort}] [%thread] [%highlight(%-5level)] [%X{fmk_TraceId},%X{fmk_SpanId}] [%cyan(%logger{50}:%L)] - %msg%n"/>
 
-
+    <!-- 控制台输出 -->
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${log.pattern}</pattern>
         </encoder>
     </appender>
 
-    <appender name="STDOUT_ERROR" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
+    <!-- 按照每天生成日志文件 -->
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名 -->
+            <FileNamePattern>${LOG_HOME}/jeecgboot-%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>30</MaxHistory>
+            <maxFileSize>10MB</maxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>${log.pattern}</pattern>
         </encoder>
-        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+    </appender>
+
+    <!-- 生成 error html格式日志开始 -->
+    <appender name="HTML" class="ch.qos.logback.core.FileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!--设置日志级别,过滤掉info日志,只输入error日志-->
             <level>ERROR</level>
-            <onMatch>ACCEPT</onMatch>
-            <onMismatch>DENY</onMismatch>
         </filter>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                <pattern>%p%d%msg%M%F{32}%L</pattern>
+            </layout>
+        </encoder>
+        <file>${LOG_HOME}/error-log.html</file>
     </appender>
+    <!-- 生成 error html格式日志结束 -->
 
-    <!--    指定某个类的日志打印级别-->
-    <!--    <logger name="com.xuegao.springlog.controller.TestController" level="DEBUG"/>-->
-    <!--    <logger name="com.xuegao.springlog.service.TestService" level="INFO"/>-->
+    <!-- 每天生成一个html格式的日志开始 -->
+    <appender name="FILE_HTML" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件输出的文件名 -->
+            <FileNamePattern>${LOG_HOME}/jeecgboot-%d{yyyy-MM-dd}.%i.html</FileNamePattern>
+            <!--日志文件保留天数 -->
+            <MaxHistory>30</MaxHistory>
+            <MaxFileSize>10MB</MaxFileSize>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.classic.html.HTMLLayout">
+                <pattern>%p%d%msg%M%F{32}%L</pattern>
+            </layout>
+        </encoder>
+    </appender>
+    <!-- 每天生成一个html格式的日志结束 -->
 
-    <!--    <root level="DEBUG">-->
-    <!--        <appender-ref ref="STDOUT"/>-->
-    <!--    </root>-->
+    <!--myibatis log configure -->
+    <logger name="com.apache.ibatis" level="TRACE"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+
+    <!-- 日志输出级别 -->
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
+        <appender-ref ref="FILE"/>
+        <appender-ref ref="HTML"/>
+        <appender-ref ref="FILE_HTML"/>
     </root>
+
 </configuration>
