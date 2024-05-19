@@ -3,12 +3,13 @@ package com.xuegao.core.enums;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum DelFlagEnumStr implements EnumStrInterFace {
+public enum ConsatntYesNoEnumInt implements EnumIntInterFace {
     /**
-     * 删除标志默认0未删除,1已删除,0未删除
+     * 10 yes
+     * 20 no
      */
-    FLAG_0(0, "未删除"),
-    FLAG_1(1, "已删除"),
+    YES(10, "yes"),
+    NO(20, "no"),
 
     ;
 

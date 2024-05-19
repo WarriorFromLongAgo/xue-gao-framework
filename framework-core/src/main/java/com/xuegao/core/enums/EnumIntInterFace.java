@@ -4,14 +4,14 @@ import java.util.Arrays;
 
 public interface EnumIntInterFace {
 
-    String getCode();
+    int getCode();
 
     String getMsg();
 
     // 根据 code 值获取对应的枚举
-    static <T extends EnumIntInterFace> T getEnumByCode(Class<T> enumType, String inputCode) {
+    static <T extends EnumIntInterFace> T getEnumByCode(Class<T> enumType, int inputCode) {
         return Arrays.stream(enumType.getEnumConstants())
-                .filter(e -> e.getCode().equals(inputCode))
+                .filter(e -> e.getCode() == inputCode)
                 .findFirst()
                 .orElse(null);
     }
