@@ -3,7 +3,7 @@ package com.xuegao.core.enums;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum DelFlagEnum implements EnumInterFace {
+public enum DelFlagEnumStr implements EnumStrInterFace {
     /**
      * 删除标志默认0未删除,1已删除,0未删除
      */

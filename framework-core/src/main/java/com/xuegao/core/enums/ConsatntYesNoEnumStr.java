@@ -3,7 +3,7 @@ package com.xuegao.core.enums;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
-public enum ConsatntYesNoEnum implements EnumInterFace {
+public enum ConsatntYesNoEnumStr implements EnumStrInterFace {
     /**
      * 10 yes
      * 20 no
